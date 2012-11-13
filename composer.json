@@ -1,0 +1,40 @@
+{
+    "name": "ajgl/csv",
+    "description": "Classes for reading and writing CSV files (includes RFC 4180 compliant classes)",
+    "keywords": ["csv"],
+    "homepage": "https://github.com/ajgl/AjglCsv",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Antonio J. García Lagar",
+        "email": "aj@garcialagar.es",
+        "homepage": "http://aj.garcialagar.es",
+        "role": "developer"
+      }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Ajgl": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.phpunit.de"
+        }
+    ],
+    "require": {
+
+    },
+    "require-dev": {
+        "phing/phing": "dev-master",
+        "apigen/apigen": "*",
+        "pdepend/pdepend": "*",
+        "phpmd/phpmd": "*",
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "dev-master",
+        "pear-pear.phpunit.de/phpcpd": "*",
+        "pear-pear.phpunit.de/phploc": "*",
+        "pear-pear.phpunit.de/PHP_CodeBrowser": "*"
+    }
+}

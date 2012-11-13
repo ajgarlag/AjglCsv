@@ -1,0 +1,16 @@
+foo,bar,,"foo ""bar""","foo bar","foo, bar","""foo"" bar","\"foo\" bar","""foo""
+Bar","foo
+""bar""","foo,
+Bar","foo
+Bar,bar",foo
+fuu,ber,,"fuu ""ber""","fuu ber","fuu, ber","""fuu"" ber","\"fuu\" ber","""fuu""
+Ber","fuu
+""ber""","fuu,
+Ber","fuu
+Ber,ber",fuu
+
+foo,bar,,"foo ""bar""","foo bar","foo, bar","""foo"" bar","\"foo\" bar","""foo""
+Bar","foo
+""bar""","foo,
+Bar","foo
+Bar,bar",foo

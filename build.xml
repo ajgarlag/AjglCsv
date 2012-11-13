@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Ajgl\OpenUrl" default="build" basedir=".">
+    <property name="lib" value="src"/>
+    <property name="checkTestsDir" value="false" />
+
+    <fileset dir="${project.basedir}" id="libsrc">
+        <include name="${lib}/**/*.php" />
+    </fileset>
+
+    <target name="phplint"
+            description="Checks the php files syntax">
+        <echo msg="Checking php files syntax" />
+        <phplint haltonfailure="true" level="info" deprecatedAsError="true" cachefile="/tmp/ajgl_openurl.lint">
+            <fileset refid="libsrc"/>
+        </phplint>
+    </target>
+
+    <target name="phplint-tests"
+            description="Checks the php files syntax">
+        <echo msg="Checking php files syntax" />
+        <phplint haltonfailure="true" level="info" deprecatedAsError="true" cachefile="/tmp/ajgl_openurl_tests.lint">
+            <fileset dir="${project.basedir}">
+                <include name="tests/**/*.php" />
+            </fileset>
+        </phplint>
+    </target>
+
+
+    <target name="clean" depends="phplint"
+            description="Clean up and create artifact directories">
+        <echo msg="Cleaning directory ${project.basedir}/build" />
+        <delete dir="${project.basedir}/build/api"/>
+        <delete dir="${project.basedir}/build/code-browser"/>
+        <delete dir="${project.basedir}/build/coverage"/>
+        <delete dir="${project.basedir}/build/logs"/>
+        <delete dir="${project.basedir}/build/pdepend"/>
+        <delete dir="${project.basedir}/build/phpcs"/>
+        <delete dir="${project.basedir}/build/phpmd"/>
+        <delete dir="${project.basedir}/build/tests"/>
+
+        <mkdir dir="${project.basedir}/build/api"/>
+        <mkdir dir="${project.basedir}/build/code-browser"/>
+        <mkdir dir="${project.basedir}/build/coverage"/>
+        <mkdir dir="${project.basedir}/build/logs"/>
+        <mkdir dir="${project.basedir}/build/pdepend"/>
+        <mkdir dir="${project.basedir}/build/phpcs"/>
+        <mkdir dir="${project.basedir}/build/phpmd"/>
+        <mkdir dir="${project.basedir}/build/tests"/>
+
+        <if>
+            <not>
+                <available file="${project.basedir}/build/cache" type="dir"/>
+            </not>
+            <then>
+                <mkdir dir="${project.basedir}/build/cache"/>
+            </then>
+        </if>
+        <property name="build.cachedir" value="${project.basedir}/build/cache" />
+
+
+    </target>
+
+    <target name="composer" depends="clean"
+            description="Install php dependencies with composer">
+        <echo msg="Installing php dependencies with composer"/>
+
+        <property name="build.composer.phar" value="${build.cachedir}/composer.phar" />
+
+        <if>
+            <not>
+                <available file="${build.composer.phar}"/>
+            </not>
+            <then>
+                <exec dir="${build.cachedir}" command="curl -s http://getcomposer.org/installer | php" checkreturn="true"/>
+            </then>
+        </if>
+
+        <exec dir="${project.basedir}" command="php ${build.composer.phar} update --dev" checkreturn="true"/>
+
+        <property name="vendor.bindir" value="${project.basedir}/vendor/bin" />
+
+    </target>
+
+    <target name="phpunit" depends="composer,clean"
+            description="Run unit tests using PHPUnit and generates junit.xml and clover.xml">
+        <echo msg="Running unit tests using PHPUnit command" />
+        <exec dir="${project.basedir}/tests" command="${vendor.bindir}/phpunit" returnProperty="phpuniterror" passthru="true"/>
+        <phpunitreport infile="${project.basedir}/build/logs/junit.xml"
+                       format="frames"
+                       todir="${project.basedir}/build/tests"
+                       usesorttable="true"/>
+        <if>
+            <equals arg1="${phpuniterror}" arg2="0" />
+            <then>
+                <echo msg="Tests execution success!" />
+            </then>
+            <else>
+                <fail if="phpuniterror" message="Tests execution failed! Code: ${phpuniterror}" />
+            </else>
+        </if>
+
+    </target>
+
+    <target name="pdepend" depends="composer,clean"
+            description="Generate jdepend.xml and software metrics charts using PHP_Depend">
+        <echo msg="Generating software metrics with PHP_Depend" />
+        <phpdepend>
+            <fileset refid="libsrc"/>
+            <logger type="jdepend-xml" outfile="${project.basedir}/build/logs/jdepend.xml"/>
+            <logger type="jdepend-chart" outfile="${project.basedir}/build/pdepend/dependencies.svg"/>
+            <logger type="overview-pyramid" outfile="${project.basedir}/build/pdepend/overview-pyramid.svg"/>
+            <analyzer type="coderank-mode" value="method"/>
+        </phpdepend>
+    </target>
+
+    <target name="phpmd" depends="composer,clean"
+            description="Generate pmd.xml using PHPMD">
+        <echo msg="Generating mess detector report with PHPMPD" />
+        <phpmd rulesets="${project.basedir}/build/phpmd.xml">
+            <fileset refid="libsrc"/>
+            <formatter type="xml" outfile="${project.basedir}/build/logs/pmd.xml"/>
+            <formatter type="html" outfile="${project.basedir}/build/phpmd/index.html"/>
+        </phpmd>
+    </target>
+
+    <target name="phpcpd" depends="composer,clean"
+            description="Generate pmd-cpd.xml using PHPCPD">
+        <echo msg="Generating copy-paster report with PHPCPD" />
+        <phpcpd>
+            <fileset refid="libsrc"/>
+            <formatter type="pmd" outfile="${project.basedir}/build/logs/pmd-cpd.xml"/>
+        </phpcpd>
+    </target>
+
+    <target name="phploc" depends="composer,clean"
+            description="Generate phploc.csv">
+        <echo msg="Generating lines of code report with PHPLOC" />
+        <exec command="phploc --log-csv ${project.basedir}/build/logs/phploc.csv --exclude build --exclude docs --exclude public --exclude tests --exclude vendor ${project.basedir}" />
+    </target>
+
+    <target name="phpcs" depends="composer,phplint"
+            description="Interactive checking coding style">
+        <echo msg="Interactively checking coding style" />
+        <exec command="${vendor.bindir}/phpcs --standard=/home/aj/public_html/oom/build/phpcs.xml  -a ${lib}" passthru="true" />
+    </target>
+
+    <target name="phpcs-tests" depends="composer,phplint-tests"
+            description="Interactive checking coding style of tests">
+        <echo msg="Interactively checking coding style of tests" />
+        <exec command="${vendor.bindir}/phpcs --standard=/home/aj/public_html/oom/build/phpcs.xml  -a ${lib}/../tests" passthru="true" />
+    </target>
+
+    <target name="phpcs-ci" depends="composer,clean"
+            description="Generate checkstyle.xml using PHP_CodeSniffer">
+        <echo msg="Generating checkstyle report with PHP_CodeSniffer" />
+        <phpcodesniffer standard="${project.basedir}/build/phpcs.xml" skipversioncheck="true">
+            <fileset refid="libsrc"/>
+            <formatter type="summary" usefile="false"/>
+            <formatter type="checkstyle" outfile="${project.basedir}/build/logs/checkstyle.xml"/>
+            <formatter type="full" outfile="${project.basedir}/build/phpcs/phpcs.txt"/>
+        </phpcodesniffer>
+    </target>
+
+
+    <target name="pre-commit-phpcs" depends="composer,clean"
+            description="Generate checkstyle.xml using PHP_CodeSniffer">
+        <echo msg="Generating checkstyle report with PHP_CodeSniffer" />
+        <phpcodesniffer standard="${project.basedir}/build/phpcs.xml"
+                        haltonerror="true"
+                        skipversioncheck="true">
+            <fileset refid="libsrc"/>
+            <formatter type="summary" usefile="false"/>
+            <formatter type="full" outfile="${project.basedir}/build/phpcs/phpcs.txt"/>
+        </phpcodesniffer>
+    </target>
+
+    <target name="apigen" depends="composer,clean"
+            description="Generate API documentation using ApiGen">
+        <echo msg="Generating API documentation using ApiGen" />
+        <apigen title="API Documentation"
+                executable="${vendor.bindir}/apigen.php"
+                source="${lib}"
+                destination="${project.basedir}/build/api"
+                accesslevels="public"
+                todo="yes"/>
+    </target>
+
+    <target name="phpcb" depends="composer,clean"
+            description="Aggregate tool output with PHP_CodeBrowser">
+        <echo msg="Aggregate tool output with PHP_CodeBrowser" />
+        <exec command="${vendor.bindir}/phpcb --log ${project.basedir}/build/logs
+                 --source ${lib}
+                 --output ${project.basedir}/build/code-browser" />
+    </target>
+
+    <target name="build" depends="pdepend,phpmd,phpcs-ci,apigen,phploc,phpunit,phpcb"/>
+    <target name="pre-commit" depends="pre-commit-phpcs,phpunit"/>
+
+</project>
