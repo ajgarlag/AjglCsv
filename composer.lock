@@ -1,5 +1,5 @@
 {
-    "hash": "1226dc84d5b4568cc01e73fc83bd51a1",
+    "hash": "0a6afa09b6cb251b35b063de8cee8945",
     "packages": [
 
     ],
@@ -878,30 +878,30 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "dev-master",
+            "version": "dev-composer",
             "source": {
                 "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer",
-                "reference": "f42b192e74434035f19a746f823d373663d37c33"
+                "url": "http://github.com/ajgarlag/PHP_CodeSniffer",
+                "reference": "a9a31509536c49b9b6c947bcd06b2bc6c0c04d43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer/archive/f42b192e74434035f19a746f823d373663d37c33.zip",
-                "reference": "f42b192e74434035f19a746f823d373663d37c33",
+                "url": "https://github.com/ajgarlag/PHP_CodeSniffer/archive/a9a31509536c49b9b6c947bcd06b2bc6c0c04d43.zip",
+                "reference": "a9a31509536c49b9b6c947bcd06b2bc6c0c04d43",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.1.2"
             },
-            "time": "1352760516",
+            "time": "1352880050",
             "bin": [
                 "scripts/phpcs"
             ],
             "type": "library",
             "installation-source": "source",
             "autoload": {
-                "files": [
-                    "CodeSniffer.php"
+                "classmap": [
+                    "."
                 ]
             },
             "license": [
@@ -916,9 +916,13 @@
             "description": "PHP_CodeSniffer tokenises PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
             "homepage": "http://www.squizlabs.com/php-codesniffer",
             "keywords": [
-                "standards",
-                "phpcs"
-            ]
+                "phpcs",
+                "standards"
+            ],
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name%5B%5D=PHP_CodeSniffer",
+                "source": "https://github.com/squizlabs/PHP_CodeSniffer"
+            }
         },
         {
             "name": "symfony/yaml",
