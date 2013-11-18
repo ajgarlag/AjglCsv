@@ -47,6 +47,17 @@ class Csv
     }
 
     /**
+     * @return Csv
+     */
+    public static function create()
+    {
+        return new self(
+            new Reader\ReaderFactory(),
+            new Writer\WriterFactory()
+        );
+    }
+
+    /**
      * @return ReaderFactoryInterface
      */
     public function getReaderFactory()
