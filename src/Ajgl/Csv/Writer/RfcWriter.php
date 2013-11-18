@@ -49,7 +49,7 @@ class RfcWriter
      */
     protected static function getEscaperCallback($delimiter)
     {
-        return function($string) use ($delimiter) {
+        return function ($string) use ($delimiter) {
             $string = str_replace('"', '""', $string);
             if (
                 strpos($string, '"')!== false
