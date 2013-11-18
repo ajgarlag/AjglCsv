@@ -130,7 +130,7 @@ class Csv
      * @param  string          $type
      * @return ReaderInterface
      */
-    public function getReader($filePath, $mode, $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT_OUTPUT, $type = null)
+    public function createReader($filePath, $mode = 'r', $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT_OUTPUT, $type = null)
     {
         if (null === $type) {
             $type = $this->getDefaultReaderType();
@@ -147,7 +147,7 @@ class Csv
      * @param  string          $type
      * @return WriterInterface
      */
-    public function getWriter($filePath, $mode, $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT_OUTPUT, $type = null)
+    public function createWriter($filePath, $mode = 'w', $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT_OUTPUT, $type = null)
     {
         if (null === $type) {
             $type = $this->getDefaultWriterType();
