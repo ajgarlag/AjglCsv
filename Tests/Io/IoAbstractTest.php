@@ -4,7 +4,9 @@
  * @package    Ajgl\Csv
  * @subpackage Io\Tests
  */
-namespace Ajgl\Csv\Io;
+namespace Ajgl\Csv\Tests\Io;
+
+use Ajgl\Csv\Io\IoAbstract;
 
 /**
  * @category   Ajgl

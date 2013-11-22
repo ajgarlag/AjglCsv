@@ -4,7 +4,9 @@
  * @package    Ajgl\Csv
  * @subpackage Reader\Tests
  */
-namespace Ajgl\Csv\Reader;
+namespace Ajgl\Csv\Tests\Reader;
+
+use Ajgl\Csv\Reader\NativePhpReader;
 
 /**
  * @category   Ajgl

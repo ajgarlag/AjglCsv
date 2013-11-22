@@ -4,18 +4,20 @@
  * @package    Ajgl\Csv
  * @subpackage Writer\Tests
  */
-namespace Ajgl\Csv\Writer;
+namespace Ajgl\Csv\Tests\Writer;
+
+use Ajgl\Csv\Writer\NativePhpWriter;
 
 /**
  * @category   Ajgl
  * @package    Ajgl\Csv
  * @subpackage Writer\Tests
  */
-class RfcPhpWriterTest
+class NativePhpWriterTest
     extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Ajgl\Csv\Writer\RfcWriter
+     * @var \Ajgl\Csv\Writer\NativePhpWriter
      */
     protected $object;
 
@@ -34,7 +36,7 @@ class RfcPhpWriterTest
             'delimiter' => ';',
             'outputCharset' => 'ASCII'
         );
-        $this->object = new RfcWriter(
+        $this->object = new NativePhpWriter(
             $this->params['filePath'],
             $this->params['mode'],
             $this->params['delimiter'],
@@ -46,7 +48,7 @@ class RfcPhpWriterTest
     {
         $this->object->writeRow(array('foo', 'bar', 'fú', 'foo"bar\"'));
         $this->object->close();
-        $expected = 'foo;bar;f ;"foo""bar\"""'.RfcWriter::EOL;
+        $expected = 'foo;bar;"f ";"foo""bar\""'.PHP_EOL;
         $actual = file_get_contents($this->object->getFilePath());
         $this->assertEquals($expected, $actual);
     }

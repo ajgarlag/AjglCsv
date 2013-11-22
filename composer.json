@@ -14,9 +14,10 @@
     ],
     "autoload": {
         "psr-0": {
-            "Ajgl": "src/"
+            "Ajgl\\Csv": ""
         }
     },
+    "target-dir": "Ajgl/Csv",
     "require": {
         "php": ">=5.3.2"
     },

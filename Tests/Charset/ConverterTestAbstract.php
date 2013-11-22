@@ -4,7 +4,7 @@
  * @package    Ajgl\Csv
  * @subpackage Charset\Tests
  */
-namespace Ajgl\Csv\Charset;
+namespace Ajgl\Csv\Tests\Charset;
 
 /**
  * @category   Ajgl

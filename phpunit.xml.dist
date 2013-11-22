@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./vendor/autoload.php">
+
+    <testsuite name="Ajgl\Csv Test Suite">
+        <directory>./Tests</directory>
+    </testsuite>
+
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">.</directory>
+        </whitelist>
+    </filter>
+
+</phpunit>
