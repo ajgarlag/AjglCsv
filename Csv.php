@@ -69,7 +69,7 @@ class Csv
     }
 
     /**
-     * @param  \Ajgl\Csv\Reader\ReaderFactoryInterface $readerFactory
+     * @param \Ajgl\Csv\Reader\ReaderFactoryInterface $readerFactory
      */
     public function setReaderFactory(ReaderFactoryInterface $readerFactory)
     {
@@ -85,7 +85,7 @@ class Csv
     }
 
     /**
-     * @param  \Ajgl\Csv\Writer\WriterFactoryInterface $writerFactory
+     * @param \Ajgl\Csv\Writer\WriterFactoryInterface $writerFactory
      */
     public function setWriterFactory(WriterFactoryInterface $writerFactory)
     {
@@ -101,7 +101,7 @@ class Csv
     }
 
     /**
-     * @param  string        $defaultReaderType
+     * @param string $defaultReaderType
      */
     public function setDefaultReaderType($defaultReaderType)
     {
@@ -117,7 +117,7 @@ class Csv
     }
 
     /**
-     * @param  string        $defaultWriterType
+     * @param string $defaultWriterType
      */
     public function setDefaultWriterType($defaultWriterType)
     {
