@@ -119,4 +119,9 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 
         $this->csv->createWriter($path);
     }
+
+    public function testCreate()
+    {
+        $this->assertInstanceOf('Ajgl\Csv\Csv', Csv::create());
+    }
 }
