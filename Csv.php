@@ -1,7 +1,11 @@
 <?php
 /**
- * @category   Ajgl
- * @package    Ajgl\Csv
+ * This file is part of the AJ General Libraries
+ *
+ * Copyright (C) 2010-2013 Antonio J. García Lagar <aj@garcialagar.es>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace Ajgl\Csv;
 
@@ -11,8 +15,7 @@ use Ajgl\Csv\Reader\ReaderInterface;
 use Ajgl\Csv\Writer\WriterInterface;
 
 /**
- * @category   Ajgl
- * @package    Ajgl\Csv
+ * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
 class Csv
 {

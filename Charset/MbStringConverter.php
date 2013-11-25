@@ -1,15 +1,16 @@
 <?php
 /**
- * @category   Ajgl
- * @package    Ajgl\Csv
- * @subpackage Charset
+ * This file is part of the AJ General Libraries
+ *
+ * Copyright (C) 2010-2013 Antonio J. García Lagar <aj@garcialagar.es>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace Ajgl\Csv\Charset;
 
 /**
- * @category   Ajgl
- * @package    Ajgl\Csv
- * @subpackage Charset
+ * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
 class MbStringConverter
     implements ConverterInterface
