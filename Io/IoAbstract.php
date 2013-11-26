@@ -64,8 +64,8 @@ abstract class IoAbstract
     public function __construct(
         $filePath,
         $mode,
-        $delimiter = WriterInterface::DELIMITER_DEFAULT,
-        $fileCharset = WriterInterface::CHARSET_DEFAULT
+        $delimiter = IoInterface::DELIMITER_DEFAULT,
+        $fileCharset = IoInterface::CHARSET_DEFAULT
     )
     {
         $this->filePath = $filePath;
