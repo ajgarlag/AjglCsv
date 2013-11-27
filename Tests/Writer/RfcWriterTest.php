@@ -49,7 +49,7 @@ class RfcPhpWriterTest
     {
         $this->object->writeRow(array('foo', 'bar', 'fú', 'foo"bar\"'));
         $this->object->close();
-        $expected = 'foo;bar;f ;"foo""bar\"""'.RfcWriter::EOL;
+        $expected = 'foo;bar;f?;"foo""bar\"""'.RfcWriter::EOL;
         $actual = file_get_contents($this->object->getFilePath());
         $this->assertEquals($expected, $actual);
     }
