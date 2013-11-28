@@ -25,6 +25,18 @@ abstract class ReaderAbstract
     protected $validModes = array('r', 'r+', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+');
 
     /**
+     * Class constructor
+     * @param string $filePath
+     * @param string $delimiter
+     * @param string $fileCharset
+     * @param string $mode
+     */
+    public function __construct($filePath, $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT, $mode = 'r')
+    {
+        parent::__construct($filePath, $mode, $delimiter, $fileCharset);
+    }
+
+    /**
      * @inheritdoc
      */
     public function readNextRow($outputCharset = IoInterface::CHARSET_DEFAULT)

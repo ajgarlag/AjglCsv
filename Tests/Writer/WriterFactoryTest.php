@@ -46,6 +46,6 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase
 
     private function createWriter($type)
     {
-        return $this->writerFactory->createWriter($type, tempnam(sys_get_temp_dir(), __NAMESPACE__.'\\'.__CLASS__), 'w');
+        return $this->writerFactory->createWriter($type, tempnam(sys_get_temp_dir(), __NAMESPACE__.'\\'.__CLASS__));
     }
 }

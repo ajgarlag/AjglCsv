@@ -17,16 +17,16 @@ interface ReaderFactoryInterface
     /**
      * @param  string          $type
      * @param  string          $filePath
-     * @param  string          $mode
      * @param  string          $delimiter
      * @param  string          $fileCharset
+     * @param  string          $mode
      * @return ReaderInterface
      */
     public function createReader(
         $type,
         $filePath,
-        $mode,
         $delimiter = ReaderInterface::DELIMITER_DEFAULT,
-        $fileCharset = ReaderInterface::CHARSET_DEFAULT
+        $fileCharset = ReaderInterface::CHARSET_DEFAULT,
+        $mode
     );
 }

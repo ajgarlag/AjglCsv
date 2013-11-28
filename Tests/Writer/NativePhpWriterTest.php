@@ -33,15 +33,15 @@ class NativePhpWriterTest
 
         $this->params = array(
             'filePath' => tempnam(sys_get_temp_dir(), 'test_'),
-            'mode' => 'w+',
             'delimiter' => ';',
-            'outputCharset' => 'ASCII'
+            'outputCharset' => 'ASCII',
+            'mode' => 'w+'
         );
         $this->object = new NativePhpWriter(
             $this->params['filePath'],
-            $this->params['mode'],
             $this->params['delimiter'],
-            $this->params['outputCharset']
+            $this->params['outputCharset'],
+            $this->params['mode']
         );
     }
 

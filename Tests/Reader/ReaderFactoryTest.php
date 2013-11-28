@@ -46,6 +46,6 @@ class ReaderFactoryTest extends \PHPUnit_Framework_TestCase
 
     private function createReader($type)
     {
-        return $this->readerFactory->createReader($type, tempnam(sys_get_temp_dir(), __NAMESPACE__.'\\'.__CLASS__), 'r');
+        return $this->readerFactory->createReader($type, tempnam(sys_get_temp_dir(), __NAMESPACE__.'\\'.__CLASS__));
     }
 }

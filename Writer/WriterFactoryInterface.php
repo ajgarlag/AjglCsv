@@ -17,16 +17,16 @@ interface WriterFactoryInterface
     /**
      * @param  string          $type
      * @param  string          $filePath
-     * @param  string          $mode
      * @param  string          $delimiter
      * @param  string          $fileCharset
+     * @param  string          $mode
      * @return WriterInterface
      */
     public function createWriter(
         $type,
         $filePath,
-        $mode,
         $delimiter = WriterInterface::DELIMITER_DEFAULT,
-        $fileCharset = WriterInterface::CHARSET_DEFAULT
+        $fileCharset = WriterInterface::CHARSET_DEFAULT,
+        $mode
     );
 }

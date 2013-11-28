@@ -25,6 +25,18 @@ abstract class WriterAbstract
     protected $validModes = array('r+', 'w', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+');
 
     /**
+     * Class constructor
+     * @param string $filePath
+     * @param string $delimiter
+     * @param string $fileCharset
+     * @param string $mode
+     */
+    public function __construct($filePath, $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT, $mode = 'w')
+    {
+        parent::__construct($filePath, $mode, $delimiter, $fileCharset);
+    }
+
+    /**
      * @inheritdoc
      */
     public function writeRow(array $row, $inputCharset = IoInterface::CHARSET_DEFAULT)

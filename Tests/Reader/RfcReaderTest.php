@@ -33,15 +33,15 @@ class RfcReaderTest
 
         $this->params = array(
             'filePath' => __DIR__ . '/_files/rfc_test.csv',
-            'mode' => 'r',
             'delimiter' => ',',
-            'fileCharset' => 'ASCII'
+            'fileCharset' => 'ASCII',
+            'mode' => 'r'
         );
         $this->object = new RfcReader(
             $this->params['filePath'],
-            $this->params['mode'],
             $this->params['delimiter'],
-            $this->params['fileCharset']
+            $this->params['fileCharset'],
+            $this->params['mode']
         );
     }
 
@@ -102,9 +102,9 @@ class RfcReaderTest
     {
         $object = new RfcReader(
              __DIR__ . '/_files/rfc_test_error.csv',
-            $this->params['mode'],
             $this->params['delimiter'],
-            $this->params['fileCharset']
+            $this->params['fileCharset'],
+            $this->params['mode']
         );
         $object->readNextRows();
     }

@@ -21,17 +21,17 @@ class WriterFactory
     public function createWriter(
         $type,
         $filePath,
-        $mode,
         $delimiter = WriterInterface::DELIMITER_DEFAULT,
-        $fileCharset = WriterInterface::CHARSET_DEFAULT
+        $fileCharset = WriterInterface::CHARSET_DEFAULT,
+        $mode = 'w'
     )
     {
         switch ($type) {
             case 'php':
-                return new NativePhpWriter($filePath, $mode, $delimiter, $fileCharset);
+                return new NativePhpWriter($filePath, $delimiter, $fileCharset, $mode);
                 break;
             case 'rfc':
-                return new RfcWriter($filePath, $mode, $delimiter, $fileCharset);
+                return new RfcWriter($filePath, $delimiter, $fileCharset, $mode);
                 break;
             default:
                 throw new \InvalidArgumentException(

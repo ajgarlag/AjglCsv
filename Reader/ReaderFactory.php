@@ -21,17 +21,17 @@ class ReaderFactory
     public function createReader(
         $type,
         $filePath,
-        $mode,
         $delimiter = ReaderInterface::DELIMITER_DEFAULT,
-        $fileCharset = ReaderInterface::CHARSET_DEFAULT
+        $fileCharset = ReaderInterface::CHARSET_DEFAULT,
+        $mode = 'r'
     )
     {
         switch ($type) {
             case 'php':
-                return new NativePhpReader($filePath, $mode, $delimiter, $fileCharset);
+                return new NativePhpReader($filePath, $delimiter, $fileCharset, $mode);
                 break;
             case 'rfc':
-                return new RfcReader($filePath, $mode, $delimiter, $fileCharset);
+                return new RfcReader($filePath, $delimiter, $fileCharset, $mode);
                 break;
             default:
                 throw new \InvalidArgumentException(
