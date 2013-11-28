@@ -20,7 +20,7 @@ interface ReaderInterface
 
     /**
      * @param  string $inputCharset
-     * @return array
+     * @return array | null
      */
     public function readNextRow($inputCharset = IoInterface::CHARSET_DEFAULT_INPUT);
 
