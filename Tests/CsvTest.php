@@ -93,9 +93,9 @@ class CsvTest extends \PHPUnit_Framework_TestCase
             ->with(
                 $this->equalTo('php'),
                 $this->equalTo($path),
-                $this->equalTo('r'),
                 $this->equalTo(\Ajgl\Csv\Io\IoInterface::DELIMITER_DEFAULT),
-                $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT)
+                $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT),
+                $this->equalTo('r')
             )
         ;
 
@@ -111,9 +111,9 @@ class CsvTest extends \PHPUnit_Framework_TestCase
             ->with(
                 $this->equalTo('php'),
                 $this->equalTo($path),
-                $this->equalTo('w'),
                 $this->equalTo(\Ajgl\Csv\Io\IoInterface::DELIMITER_DEFAULT),
-                $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT)
+                $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT),
+                $this->equalTo('w')
             )
         ;
 

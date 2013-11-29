@@ -126,35 +126,35 @@ class Csv
 
     /**
      * @param  string          $filePath
-     * @param  string          $mode
      * @param  string          $delimiter
      * @param  string          $fileCharset
+     * @param  string          $mode
      * @param  string          $type
      * @return ReaderInterface
      */
-    public function createReader($filePath, $mode = 'r', $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT, $type = null)
+    public function createReader($filePath, $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT, $mode = 'r', $type = null)
     {
         if (null === $type) {
             $type = $this->getDefaultReaderType();
         }
 
-        return $this->getReaderFactory()->createReader($type, $filePath, $mode, $delimiter, $fileCharset);
+        return $this->getReaderFactory()->createReader($type, $filePath, $delimiter, $fileCharset, $mode);
     }
 
     /**
      * @param  string          $filePath
-     * @param  string          $mode
      * @param  string          $delimiter
      * @param  string          $fileCharset
+     * @param  string          $mode
      * @param  string          $type
      * @return WriterInterface
      */
-    public function createWriter($filePath, $mode = 'w', $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT, $type = null)
+    public function createWriter($filePath, $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT, $mode = 'w', $type = null)
     {
         if (null === $type) {
             $type = $this->getDefaultWriterType();
         }
 
-        return $this->getWriterFactory()->createWriter($type, $filePath, $mode, $delimiter, $fileCharset);
+        return $this->getWriterFactory()->createWriter($type, $filePath, $delimiter, $fileCharset, $mode);
     }
 }
