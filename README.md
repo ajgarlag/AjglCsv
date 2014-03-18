@@ -56,7 +56,6 @@ Badges
 * **Poser Daily Downloads** [![Daily Downloads](https://poser.pugx.org/ajgl/csv/d/daily.png)](https://packagist.org/packages/ajgl/csv)
 * **Scrutinizer Quality** [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/badges/quality-score.png?s=07ede5e0d7f8f6f5065277af7eecbc677c283ee8)](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/)
 * **Scrutinizer Code Coverage** [![Code Coverage](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/badges/coverage.png?s=00d4254cea1de1ad74e1cacd64d9eef771205ba8)](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/)
-* **Bitdeli Popularity** [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ajgarlag/ajglcsv/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 * **SensionLabs Insight Quality** [![SensioLabsInsight](https://insight.sensiolabs.com/projects/47a8fbe8-c9f7-48d8-a0e7-4b3906d8e48f/mini.png)](https://insight.sensiolabs.com/projects/47a8fbe8-c9f7-48d8-a0e7-4b3906d8e48f)
 * **VersionEye Dependency Status** [![Dependency Status](https://www.versioneye.com/php/ajgl:csv/dev-master/badge.png)](https://www.versioneye.com/php/ajgl:csv/dev-master)
 
