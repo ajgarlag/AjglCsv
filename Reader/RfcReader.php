@@ -15,55 +15,110 @@ namespace Ajgl\Csv\Reader;
 class RfcReader
     extends ReaderAbstract
 {
-    /**
-     * @var string
-     */
-    const EOL = "\r\n";
+    const STATE_FIELD_START = "1";
+    const STATE_BUFFERING_UNQUOTED_FIELD = "2";
+    const STATE_BUFFERING_QUOTED_FIELD = "3";
+    const STATE_QUOTE_IN_QUOTED_FIELD = "4";
+    const STATE_EOL_START = "5";
+
+    const CHAR_QUOTE = '"';
+    const CHAR_CR = "\r";
+    const CHAR_LF = "\n";
+
+    private $acceptStates = array(self::STATE_FIELD_START, self::STATE_BUFFERING_UNQUOTED_FIELD);
 
     /**
      * @inheritdoc
      */
     protected function doRead($fileHandler, $delimiter)
     {
-        $row = fgets($fileHandler);
-        $pattern = '/^("(?:[^"]|"")*"|[^'. $delimiter . '"]*)(' . $delimiter . '("(?:[^"]|"")*"|[^'
-                . $delimiter . '"]*))*(?:' . static::EOL . '|\z)/';
-        if ($row !== false) {
-            while (!preg_match($pattern, $row, $match)) {
-                $nextLine = fgets($fileHandler);
-                if ($nextLine === false) {
-                    throw new \RuntimeException("Premature EOF");
-                }
-                $row .= $nextLine;
-            }
-
-            return $this->stringToArray($row, $delimiter);
+        if (feof($fileHandler)) {
+            return;
         }
+
+        $state = self::STATE_FIELD_START;
+        $row = array();
+        $field = "";
+
+        while ($char = fgetc($fileHandler)) {
+            switch ($state) {
+                case self::STATE_FIELD_START:
+                    switch ($char) {
+                        case $delimiter:
+                            $row[] = $field;
+                            $field = "";
+                            break;
+                        case self::CHAR_QUOTE:
+                            $state = self::STATE_BUFFERING_QUOTED_FIELD;
+                            break;
+                        case self::CHAR_CR:
+                            $state = self::STATE_EOL_START;
+                            break;
+                        default:
+                            $field .= $char;
+                            $state = self::STATE_BUFFERING_UNQUOTED_FIELD;
+                            break;
+                    }
+                    break;
+                case self::STATE_BUFFERING_UNQUOTED_FIELD:
+                    switch ($char) {
+                        case $delimiter:
+                            $row[] = $field;
+                            $field = "";
+                            $state = self::STATE_FIELD_START;
+                            break;
+                        case self::CHAR_CR:
+                            $state = self::STATE_EOL_START;
+                            break;
+                        default:
+                            $field .= $char;
+                            break;
+                    }
+                    break;
+                case self::STATE_BUFFERING_QUOTED_FIELD:
+                    switch ($char) {
+                        case self::CHAR_QUOTE:
+                            $state = self::STATE_QUOTE_IN_QUOTED_FIELD;
+                            break;
+                        default:
+                            $field .= $char;
+                            break;
+                    }
+                    break;
+                case self::STATE_QUOTE_IN_QUOTED_FIELD:
+                    switch ($char) {
+                        case $delimiter:
+                            $row[] = $field;
+                            $field = "";
+                            $state = self::STATE_FIELD_START;
+                            break;
+                        default:
+                            $field .= $char;
+                            $state = self::STATE_BUFFERING_QUOTED_FIELD;
+                            break;
+                    }
+                    break;
+                case self::STATE_EOL_START:
+                    switch ($char) {
+                        case self::CHAR_LF:
+                            $row[] = $field;
+                            return $row;
+                            break;
+                        default:
+                            throw new \RuntimeException("Expected LF char not found.");
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        if (!in_array($state, $this->acceptStates)) {
+            throw new \RuntimeException("Premature EOF.");
+        }
+
+        $row[] = $field;
+        return $row;
 
     }
 
-    /**
-     * @param  string $string
-     * @param  string $delimiter
-     * @return array
-     */
-    public static function stringToArray($string, $delimiter)
-    {
-        $values = array();
-        $matches = array();
-        $pattern = '/(?<=' . $delimiter . '|\A)("(?:[^"]|"")*"|[^' . $delimiter . '"]*)/s';
-        if (substr($string, -2) == static::EOL) {
-            $string = substr($string, 0, -2);
-        }
-        preg_match_all($pattern, $string, $matches);
-        foreach ($matches[1] as $value) {
-            $value = str_replace('""', '"', $value);
-            if (strpos($value, '"') === 0) {
-                $value = substr($value, 1, -1);
-            }
-            array_push($values, $value);
-        }
-
-        return $values;
-    }
 }
