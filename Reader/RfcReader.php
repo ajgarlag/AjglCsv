@@ -25,14 +25,26 @@ class RfcReader
     const CHAR_CR = "\r";
     const CHAR_LF = "\n";
 
-    private $acceptStates = array(self::STATE_FIELD_START, self::STATE_BUFFERING_UNQUOTED_FIELD);
+    /**
+     * @var array
+     */
+    private $acceptStates = array(
+        self::STATE_FIELD_START,
+        self::STATE_BUFFERING_UNQUOTED_FIELD,
+        self::STATE_EOL_START
+    );
+
+    /**
+     * @var boolean
+     */
+    private $strictRfcEolMode = false;
 
     /**
      * @inheritdoc
      */
-    protected function doRead($fileHandler, $delimiter)
+    protected function doRead()
     {
-        if (feof($fileHandler)) {
+        if (feof($this->getHandler())) {
             return;
         }
 
@@ -40,85 +52,166 @@ class RfcReader
         $row = array();
         $field = "";
 
-        while ($char = fgetc($fileHandler)) {
+        while (false !== $char = fgetc($this->getHandler())) {
             switch ($state) {
                 case self::STATE_FIELD_START:
-                    switch ($char) {
-                        case $delimiter:
-                            $row[] = $field;
-                            $field = "";
-                            break;
-                        case self::CHAR_QUOTE:
-                            $state = self::STATE_BUFFERING_QUOTED_FIELD;
-                            break;
-                        case self::CHAR_CR:
-                            $state = self::STATE_EOL_START;
-                            break;
-                        default:
-                            $field .= $char;
-                            $state = self::STATE_BUFFERING_UNQUOTED_FIELD;
-                            break;
-                    }
+                    $this->handleFieldStartState($char, $state, $field, $row);
                     break;
                 case self::STATE_BUFFERING_UNQUOTED_FIELD:
-                    switch ($char) {
-                        case $delimiter:
-                            $row[] = $field;
-                            $field = "";
-                            $state = self::STATE_FIELD_START;
-                            break;
-                        case self::CHAR_CR:
-                            $state = self::STATE_EOL_START;
-                            break;
-                        default:
-                            $field .= $char;
-                            break;
-                    }
+                    $this->handleBufferingUnquotedFieldState($char, $state, $field, $row);
                     break;
                 case self::STATE_BUFFERING_QUOTED_FIELD:
-                    switch ($char) {
-                        case self::CHAR_QUOTE:
-                            $state = self::STATE_QUOTE_IN_QUOTED_FIELD;
-                            break;
-                        default:
-                            $field .= $char;
-                            break;
-                    }
+                    $this->handleBufferingQuotedFieldState($char, $state, $field, $row);
                     break;
                 case self::STATE_QUOTE_IN_QUOTED_FIELD:
-                    switch ($char) {
-                        case $delimiter:
-                            $row[] = $field;
-                            $field = "";
-                            $state = self::STATE_FIELD_START;
-                            break;
-                        default:
-                            $field .= $char;
-                            $state = self::STATE_BUFFERING_QUOTED_FIELD;
-                            break;
-                    }
+                    $this->handleQuoteInQuotedFieldState($char, $state, $field, $row);
                     break;
                 case self::STATE_EOL_START:
-                    switch ($char) {
-                        case self::CHAR_LF:
-                            $row[] = $field;
-                            return $row;
-                            break;
-                        default:
-                            throw new \RuntimeException("Expected LF char not found.");
-                            break;
-                    }
+                    $this->handleEolStartState($char, $state, $field, $row);
+                    return $row;
                     break;
             }
         }
 
         if (!in_array($state, $this->acceptStates)) {
             throw new \RuntimeException("Premature EOF.");
+        } else {
+            $row[] = $field;
         }
 
-        $row[] = $field;
         return $row;
-
     }
 
+    /**
+     * @param string $char
+     * @param integer $state
+     * @param string $field
+     * @param array $row
+     */
+    private function handleFieldStartState($char, &$state, &$field, array &$row)
+    {
+        switch ($char) {
+            case $this->getDelimiter():
+                $row[] = $field;
+                $field = "";
+                break;
+            case self::CHAR_QUOTE:
+                $state = self::STATE_BUFFERING_QUOTED_FIELD;
+                break;
+            case self::CHAR_LF:
+                if ($this->isStrictRfcEolModeSet()) {
+                    throw new \RuntimeException("Unexpected EOL. Strict RFC EOL Mode set.");
+                }
+            case self::CHAR_CR:
+                $state = self::STATE_EOL_START;
+                break;
+            default:
+                $field .= $char;
+                $state = self::STATE_BUFFERING_UNQUOTED_FIELD;
+                break;
+        }
+    }
+
+    /**
+     * @param string $char
+     * @param integer $state
+     * @param string $field
+     * @param array $row
+     */
+    private function handleBufferingUnquotedFieldState($char, &$state, &$field, array &$row)
+    {
+        switch ($char) {
+            case $this->getDelimiter():
+                $row[] = $field;
+                $field = "";
+                $state = self::STATE_FIELD_START;
+                break;
+            case self::CHAR_LF:
+                if ($this->isStrictRfcEolModeSet()) {
+                    throw new \RuntimeException("Unexpected EOL. Strict RFC EOL Mode set.");
+                }
+            case self::CHAR_CR:
+                $state = self::STATE_EOL_START;
+                break;
+            default:
+                $field .= $char;
+                break;
+        }
+    }
+
+    /**
+     * @param string $char
+     * @param integer $state
+     * @param string $field
+     * @param array $row
+     */
+    private function handleBufferingQuotedFieldState($char, &$state, &$field, array &$row)
+    {
+        switch ($char) {
+            case self::CHAR_QUOTE:
+                $state = self::STATE_QUOTE_IN_QUOTED_FIELD;
+                break;
+            default:
+                $field .= $char;
+                break;
+        }
+    }
+
+    /**
+     * @param string $char
+     * @param integer $state
+     * @param string $field
+     * @param array $row
+     */
+    private function handleQuoteInQuotedFieldState($char, &$state, &$field, array &$row)
+    {
+        switch ($char) {
+            case $this->getDelimiter():
+                $row[] = $field;
+                $field = "";
+                $state = self::STATE_FIELD_START;
+                break;
+            default:
+                $field .= $char;
+                $state = self::STATE_BUFFERING_QUOTED_FIELD;
+                break;
+        }
+    }
+
+    /**
+     * @param string $char
+     * @param integer $state
+     * @param string $field
+     * @param array $row
+     */
+    private function handleEolStartState($char, &$state, &$field, array &$row)
+    {
+        switch ($char) {
+            default:
+                fseek($this->getHandler(), ftell($this->getHandler()) -1);
+            case self::CHAR_CR:
+                if ($this->isStrictRfcEolModeSet()) {
+                    throw new \RuntimeException("Unexpected EOL. Strict RFC EOL Mode set.");
+                }
+            case self::CHAR_LF:
+                $row[] = $field;
+                break;
+        }
+    }
+
+    /**
+     * @param boolean $flag
+     */
+    public function setStrictRfcEolMode($flag)
+    {
+        $this->strictRfcEolMode = (boolean) $flag;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isStrictRfcEolModeSet()
+    {
+        return $this->strictRfcEolMode;
+    }
 }

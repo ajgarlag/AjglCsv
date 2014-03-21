@@ -76,10 +76,8 @@ abstract class ReaderAbstract
     }
 
     /**
-     * @param  resource $fileHandler
-     * @param  string   $delimiter
      * @return array
      */
-    abstract protected function doRead($fileHandler, $delimiter);
+    abstract protected function doRead();
 
 }

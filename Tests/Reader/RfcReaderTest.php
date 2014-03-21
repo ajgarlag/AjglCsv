@@ -96,7 +96,7 @@ class RfcReaderTest
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Premature EOF
+     * @expectedExceptionMessage Premature EOF.
      */
     public function testExceptionThrownWhenPrematureEOF()
     {
@@ -106,6 +106,60 @@ class RfcReaderTest
             $this->params['fileCharset'],
             $this->params['mode']
         );
+        $object->readNextRows();
+    }
+
+    public function testReadingUnixFile()
+    {
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_lf.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $this->assertCount(3, $object->readNextRows());
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Unexpected EOL. Strict RFC EOL Mode set.
+     */
+    public function testExceptionThrownWhenReadingUnixFileInStrictMode()
+    {
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_lf.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $object->setStrictRfcEolMode(true);
+        $object->readNextRows();
+    }
+
+    public function testReadingMacFile()
+    {
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_cr.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $this->assertCount(3, $object->readNextRows());
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Unexpected EOL. Strict RFC EOL Mode set.
+     */
+    public function testExceptionThrownWhenReadingMacFileInStrictMode()
+    {
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_cr.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $object->setStrictRfcEolMode(true);
         $object->readNextRows();
     }
 }
