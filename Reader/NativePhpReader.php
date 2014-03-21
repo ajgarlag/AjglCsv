@@ -18,9 +18,9 @@ class NativePhpReader
     /**
      * @inheritdoc
      */
-    protected function doRead($fileHandler, $delimiter)
+    protected function doRead()
     {
-        $row = fgetcsv($fileHandler, 0, $delimiter);
+        $row = fgetcsv($this->getHandler(), 0, $this->getDelimiter());
 
         return ($row !== false)?$row:null;
     }

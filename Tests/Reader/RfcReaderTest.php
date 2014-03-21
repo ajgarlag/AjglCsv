@@ -96,7 +96,7 @@ class RfcReaderTest
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Premature EOF
+     * @expectedExceptionMessage Premature EOF.
      */
     public function testExceptionThrownWhenPrematureEOF()
     {
@@ -109,49 +109,57 @@ class RfcReaderTest
         $object->readNextRows();
     }
 
-    public function getCsvData()
+    public function testReadingUnixFile()
     {
-        return array(
-            array(
-                '',
-                array(''),
-                ','
-            ),
-            array(
-                "\r\n",
-                array(''),
-                ','
-            ),
-            array(
-                'a,e,i,o,u',
-                array('a', 'e', 'i', 'o', 'u'),
-                ','
-            ),
-            array(
-                "a,e,i,o,u\r\n",
-                array('a', 'e', 'i', 'o', 'u'),
-                ','
-            ),
-            array(
-                'a;e;i;o;u',
-                array('a', 'e', 'i', 'o', 'u'),
-                ';'
-            ),
-            array(
-                'foo,bar,,"foo ""bar""",foo bar,"foo, bar","""foo"" bar","\""foo\"" bar","""foo""'."\r\n".'Bar","foo'."\r\n".'""bar""","foo,'."\r\n".'Bar","foo'."\r\n".'Bar,bar",foo',
-                array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
-                ','
-            ),
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_lf.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
         );
+        $this->assertCount(3, $object->readNextRows());
     }
 
     /**
-     * @dataProvider getCsvData
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Unexpected EOL. Strict RFC EOL Mode set.
      */
-    public function testStringToArray($string, array $array, $delimiter)
+    public function testExceptionThrownWhenReadingUnixFileInStrictMode()
     {
-        $expected = $array;
-        $actual = $this->object->stringToArray($string, $delimiter);
-        $this->assertEquals($expected, $actual);
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_lf.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $object->setStrictRfcEolMode(true);
+        $object->readNextRows();
+    }
+
+    public function testReadingMacFile()
+    {
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_cr.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $this->assertCount(3, $object->readNextRows());
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Unexpected EOL. Strict RFC EOL Mode set.
+     */
+    public function testExceptionThrownWhenReadingMacFileInStrictMode()
+    {
+        $object = new RfcReader(
+             __DIR__ . '/_files/rfc_test_cr.csv',
+            $this->params['delimiter'],
+            $this->params['fileCharset'],
+            $this->params['mode']
+        );
+        $object->setStrictRfcEolMode(true);
+        $object->readNextRows();
     }
 }
