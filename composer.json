@@ -27,7 +27,7 @@
     "suggest": {
         "ext-iconv": "Enabling the iconv extension allows you to convert the string using the IconvConverter class"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1.x-dev"
