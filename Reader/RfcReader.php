@@ -74,7 +74,12 @@ class RfcReader
         }
 
         if (!in_array($state, $this->acceptStates)) {
-            throw new \RuntimeException("Premature EOF.");
+            throw new \RuntimeException(
+                sprintf(
+                    "Invalid CSV data found in position '%s'.",
+                    ftell($this->getHandler())
+                )
+            );
         } else {
             $row[] = $field;
         }
@@ -170,6 +175,13 @@ class RfcReader
                 $row[] = $field;
                 $field = "";
                 $state = self::STATE_FIELD_START;
+                break;
+            case self::CHAR_LF:
+                if ($this->isStrictRfcEolModeSet()) {
+                    throw new \RuntimeException("Unexpected EOL. Strict RFC EOL Mode set.");
+                }
+            case self::CHAR_CR:
+                $state = self::STATE_EOL_START;
                 break;
             default:
                 $field .= $char;

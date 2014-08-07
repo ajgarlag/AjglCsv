@@ -96,7 +96,7 @@ class RfcReaderTest
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Premature EOF.
+     * @expectedExceptionMessage Invalid CSV data found in position '388'.
      */
     public function testExceptionThrownWhenPrematureEOF()
     {
