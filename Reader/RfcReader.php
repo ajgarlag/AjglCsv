@@ -171,6 +171,13 @@ class RfcReader
                 $field = "";
                 $state = self::STATE_FIELD_START;
                 break;
+            case self::CHAR_LF:
+                if ($this->isStrictRfcEolModeSet()) {
+                    throw new \RuntimeException("Unexpected EOL. Strict RFC EOL Mode set.");
+                }
+            case self::CHAR_CR:
+                $state = self::STATE_EOL_START;
+                break;
             default:
                 $field .= $char;
                 $state = self::STATE_BUFFERING_QUOTED_FIELD;
