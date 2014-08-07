@@ -74,7 +74,12 @@ class RfcReader
         }
 
         if (!in_array($state, $this->acceptStates)) {
-            throw new \RuntimeException("Premature EOF.");
+            throw new \RuntimeException(
+                sprintf(
+                    "Invalid CSV data found in position '%s'.",
+                    ftell($this->getHandler())
+                )
+            );
         } else {
             $row[] = $field;
         }
