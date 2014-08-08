@@ -28,7 +28,7 @@ $csv->setDefaultWriterType('rfc');
 To create a new CSV reader or writer, you should call:
 ```php
 $reader = $csv->createReader('/path/to/input.csv');
-$writer = $csv->createReader('/path/to/output.csv');
+$writer = $csv->createWriter('/path/to/output.csv');
 ```
 
 
