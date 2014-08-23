@@ -25,7 +25,7 @@ interface WriterInterface
     public function writeRow(array $row, $inputCharset = IoInterface::CHARSET_DEFAULT);
 
     /**
-     * @param array $row
+     * @param array $rows
      * @param type  $inputCharset
      */
     public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT);
