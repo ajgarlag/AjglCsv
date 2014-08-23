@@ -32,40 +32,28 @@ class RfcWriter
     }
 
     /**
+     * This code was borrowed from goodby/csv under MIT LICENSE
+     * @author Hidehito Nozawa <suinyeze@gmail.com>
+     * @see    https://github.com/goodby/csv
+     * @see    https://github.com/goodby/csv/blob/c6677d9c68323ef734a67a34f3e5feabcafd5b4e/src/Goodby/CSV/Export/Standard/CsvFileObject.php#L46
+     *
      * @param  array  $row
      * @param  string $delimiter
      * @return string
      */
     public static function arrayToString(array $row, $delimiter)
     {
-        $callback = static::getEscaperCallback($delimiter);
-        $row = array_map($callback, $row);
 
-        return implode($delimiter, $row);
-    }
+        $fp = fopen('php://temp', 'w+');
+        fputcsv($fp, $row, $delimiter);
+        rewind($fp);
+        $line = '';
+        while (feof($fp) === false) {
+            $line .= fgets($fp);
+        }
+        fclose($fp);
 
-    /**
-     * @param  string   $delimiter
-     * @return callback
-     */
-    protected static function getEscaperCallback($delimiter)
-    {
-        return function ($string) use ($delimiter) {
-            $string = str_replace('"', '""', $string);
-            if (
-                strpos($string, '"')!== false
-                ||
-                strpos($string, $delimiter) !== false
-                ||
-                strpos($string, "\r") !== false
-                ||
-                strpos($string, "\n") !== false
-                ) {
-                $string = '"' . $string . '"';
-            }
-
-            return $string;
-        };
+        return rtrim(str_replace('\"', '\""', $line), "\n");
     }
 
 }

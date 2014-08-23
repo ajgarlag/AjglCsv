@@ -27,6 +27,6 @@ interface ReaderFactoryInterface
         $filePath,
         $delimiter = ReaderInterface::DELIMITER_DEFAULT,
         $fileCharset = ReaderInterface::CHARSET_DEFAULT,
-        $mode
+        $mode = 'r'
     );
 }
