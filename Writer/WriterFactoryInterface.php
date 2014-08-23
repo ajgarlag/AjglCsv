@@ -27,6 +27,6 @@ interface WriterFactoryInterface
         $filePath,
         $delimiter = WriterInterface::DELIMITER_DEFAULT,
         $fileCharset = WriterInterface::CHARSET_DEFAULT,
-        $mode
+        $mode = 'w'
     );
 }
