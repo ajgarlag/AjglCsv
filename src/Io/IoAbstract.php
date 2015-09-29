@@ -17,8 +17,7 @@ use Ajgl\Csv\Charset\MbStringConverter;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-abstract class IoAbstract
-    implements IoInterface
+abstract class IoAbstract implements IoInterface
 {
     /**
      * @var string

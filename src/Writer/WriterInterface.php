@@ -16,8 +16,7 @@ use Ajgl\Csv\Io\IoInterface;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-interface WriterInterface
-    extends IoInterface
+interface WriterInterface extends IoInterface
 {
     /**
      * @param array $row

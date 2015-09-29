@@ -16,8 +16,7 @@ use Ajgl\Csv\Charset\IconvConverter;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class IconvConverterTest
-    extends ConverterTestAbstract
+class IconvConverterTest extends ConverterTestAbstract
 {
     protected function setUp()
     {

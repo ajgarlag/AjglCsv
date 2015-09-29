@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Writer;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class WriterFactory
-    implements WriterFactoryInterface
+class WriterFactory implements WriterFactoryInterface
 {
     /**
      * {@inheritdoc}

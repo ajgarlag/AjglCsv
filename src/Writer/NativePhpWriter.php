@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Writer;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class NativePhpWriter
-    extends WriterAbstract
+class NativePhpWriter extends WriterAbstract
 {
     /**
      * {@inheritdoc}

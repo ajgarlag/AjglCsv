@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Writer;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class RfcWriter
-    extends WriterAbstract
+class RfcWriter extends WriterAbstract
 {
     /**
      * @var string

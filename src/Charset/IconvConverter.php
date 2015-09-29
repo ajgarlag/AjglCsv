@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Charset;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class IconvConverter
-    implements ConverterInterface
+class IconvConverter implements ConverterInterface
 {
     /**
      * {@inheritdoc}
