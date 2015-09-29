@@ -1,12 +1,14 @@
 <?php
-/**
- * This file is part of the AJ General Libraries
+
+/*
+ * This file is part of the AJGL packages
  *
- * Copyright (C) 2010-2014 Antonio J. García Lagar <aj@garcialagar.es>
+ * Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Ajgl\Csv\Writer;
 
 use Ajgl\Csv\Io\IoAbstract;
@@ -25,7 +27,8 @@ abstract class WriterAbstract
     protected $validModes = array('r+', 'w', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+');
 
     /**
-     * Class constructor
+     * Class constructor.
+     *
      * @param string $filePath
      * @param string $delimiter
      * @param string $fileCharset
@@ -37,11 +40,11 @@ abstract class WriterAbstract
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function writeRow(array $row, $inputCharset = IoInterface::CHARSET_DEFAULT)
     {
-        if ($inputCharset != $this->getFileCharset()) {
+        if ($inputCharset !== $this->getFileCharset()) {
             $row = $this->convertRowCharset($row, $inputCharset, $this->getFileCharset());
         }
         $this->doWrite($this->getHandler(), $row, $this->getDelimiter());
@@ -50,7 +53,7 @@ abstract class WriterAbstract
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT)
     {

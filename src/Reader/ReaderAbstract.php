@@ -1,12 +1,14 @@
 <?php
-/**
- * This file is part of the AJ General Libraries
+
+/*
+ * This file is part of the AJGL packages
  *
- * Copyright (C) 2010-2014 Antonio J. García Lagar <aj@garcialagar.es>
+ * Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Ajgl\Csv\Reader;
 
 use Ajgl\Csv\Io\IoAbstract;
@@ -25,7 +27,8 @@ abstract class ReaderAbstract
     protected $validModes = array('r', 'r+', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+');
 
     /**
-     * Class constructor
+     * Class constructor.
+     *
      * @param string $filePath
      * @param string $delimiter
      * @param string $fileCharset
@@ -37,14 +40,13 @@ abstract class ReaderAbstract
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function readNextRow($outputCharset = IoInterface::CHARSET_DEFAULT)
     {
-
         $row = $this->doRead($this->getHandler(), $this->getDelimiter());
 
-        if ($row !== null && $outputCharset != $this->getFileCharset()) {
+        if ($row !== null && $outputCharset !== $this->getFileCharset()) {
             $row = $this->convertRowCharset($row, $this->getFileCharset(), $outputCharset);
         }
 
@@ -52,7 +54,7 @@ abstract class ReaderAbstract
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function readNextRows($inputCharset = IoInterface::CHARSET_DEFAULT, $limit = null)
     {
@@ -63,7 +65,7 @@ abstract class ReaderAbstract
             }
         } else {
             $limit = (integer) $limit;
-            for ($i = 0; $i < $limit; $i++) {
+            for ($i = 0; $i < $limit; ++$i) {
                 if ($row = $this->readNextRow($inputCharset)) {
                     array_push($res, $row);
                 } else {
@@ -79,5 +81,4 @@ abstract class ReaderAbstract
      * @return array
      */
     abstract protected function doRead();
-
 }

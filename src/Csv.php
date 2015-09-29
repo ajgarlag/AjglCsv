@@ -1,17 +1,19 @@
 <?php
-/**
- * This file is part of the AJ General Libraries
+
+/*
+ * This file is part of the AJGL packages
  *
- * Copyright (C) 2010-2014 Antonio J. García Lagar <aj@garcialagar.es>
+ * Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Ajgl\Csv;
 
 use Ajgl\Csv\Reader\ReaderFactoryInterface;
-use Ajgl\Csv\Writer\WriterFactoryInterface;
 use Ajgl\Csv\Reader\ReaderInterface;
+use Ajgl\Csv\Writer\WriterFactoryInterface;
 use Ajgl\Csv\Writer\WriterInterface;
 
 /**
@@ -125,11 +127,12 @@ class Csv
     }
 
     /**
-     * @param  string          $filePath
-     * @param  string          $delimiter
-     * @param  string          $fileCharset
-     * @param  string          $mode
-     * @param  string          $type
+     * @param string $filePath
+     * @param string $delimiter
+     * @param string $fileCharset
+     * @param string $mode
+     * @param string $type
+     *
      * @return ReaderInterface
      */
     public function createReader($filePath, $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT, $mode = 'r', $type = null)
@@ -142,11 +145,12 @@ class Csv
     }
 
     /**
-     * @param  string          $filePath
-     * @param  string          $delimiter
-     * @param  string          $fileCharset
-     * @param  string          $mode
-     * @param  string          $type
+     * @param string $filePath
+     * @param string $delimiter
+     * @param string $fileCharset
+     * @param string $mode
+     * @param string $type
+     *
      * @return WriterInterface
      */
     public function createWriter($filePath, $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT, $mode = 'w', $type = null)

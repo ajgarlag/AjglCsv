@@ -1,12 +1,14 @@
 <?php
-/**
- * This file is part of the AJ General Libraries
+
+/*
+ * This file is part of the AJGL packages
  *
- * Copyright (C) 2010-2014 Antonio J. García Lagar <aj@garcialagar.es>
+ * Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Ajgl\Csv\Tests\Reader;
 
 use Ajgl\Csv\Reader\RfcReader;
@@ -32,10 +34,10 @@ class RfcReaderTest
         parent::setUp();
 
         $this->params = array(
-            'filePath' => __DIR__ . '/_files/rfc_test.csv',
+            'filePath' => __DIR__.'/_files/rfc_test.csv',
             'delimiter' => ',',
             'fileCharset' => 'ASCII',
-            'mode' => 'r'
+            'mode' => 'r',
         );
         $this->object = new RfcReader(
             $this->params['filePath'],
@@ -56,14 +58,14 @@ class RfcReaderTest
     {
         $expected = array(
             array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
-            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu')
+            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
         );
         $actual = $this->object->readNextRows(RfcReader::CHARSET_DEFAULT, 2);
         $this->assertEquals($expected, $actual);
 
         $expected = array(
-            array(""),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo')
+            array(''),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows();
         $this->assertEquals($expected, $actual);
@@ -74,12 +76,11 @@ class RfcReaderTest
         $expected = array(
             array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
             array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
-            array(""),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo')
+            array(''),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows(RfcReader::CHARSET_DEFAULT, 6);
         $this->assertEquals($expected, $actual);
-
     }
 
     public function testReadNextRowsWithoutLimit()
@@ -88,7 +89,7 @@ class RfcReaderTest
             array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
             array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
             array(''),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo')
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows();
         $this->assertEquals($expected, $actual);
@@ -97,7 +98,7 @@ class RfcReaderTest
     public function testReadingUnixFile()
     {
         $object = new RfcReader(
-             __DIR__ . '/_files/rfc_test_lf.csv',
+             __DIR__.'/_files/rfc_test_lf.csv',
             $this->params['delimiter'],
             $this->params['fileCharset'],
             $this->params['mode']
@@ -109,12 +110,11 @@ class RfcReaderTest
     {
         ini_set('auto_detect_line_endings', 1);
         $object = new RfcReader(
-             __DIR__ . '/_files/rfc_test_cr.csv',
+             __DIR__.'/_files/rfc_test_cr.csv',
             $this->params['delimiter'],
             $this->params['fileCharset'],
             $this->params['mode']
         );
         $this->assertCount(3, $object->readNextRows());
     }
-
 }

@@ -1,12 +1,14 @@
 <?php
-/**
- * This file is part of the AJ General Libraries
+
+/*
+ * This file is part of the AJGL packages
  *
- * Copyright (C) 2010-2014 Antonio J. García Lagar <aj@garcialagar.es>
+ * Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Ajgl\Csv\Tests\Reader;
 
 use Ajgl\Csv\Reader\NativePhpReader;
@@ -32,10 +34,10 @@ class NativePhpReaderTest
         parent::setUp();
 
         $this->params = array(
-            'filePath' => __DIR__ . '/_files/php_test.csv',
+            'filePath' => __DIR__.'/_files/php_test.csv',
             'delimiter' => ',',
             'fileCharset' => 'ASCII',
-            'mode' => 'r'
+            'mode' => 'r',
         );
         $this->object = new NativePhpReader(
             $this->params['filePath'],
@@ -58,7 +60,7 @@ class NativePhpReaderTest
             array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
             array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
             array(''),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo')
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows();
         $this->assertEquals($expected, $actual);
