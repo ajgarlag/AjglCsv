@@ -16,8 +16,7 @@ use Ajgl\Csv\Charset\MbStringConverter;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class MbStringConverterTest
-    extends ConverterTestAbstract
+class MbStringConverterTest extends ConverterTestAbstract
 {
     protected function setUp()
     {

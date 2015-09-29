@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Reader;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class NativePhpReader
-    extends ReaderAbstract
+class NativePhpReader extends ReaderAbstract
 {
     /**
      * {@inheritdoc}

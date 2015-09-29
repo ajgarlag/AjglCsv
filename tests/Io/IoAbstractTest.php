@@ -16,8 +16,7 @@ use Ajgl\Csv\Io\IoAbstract;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class IoAbstractTest
-    extends \PHPUnit_Framework_TestCase
+class IoAbstractTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var IoAbstract
@@ -74,8 +73,7 @@ class IoAbstractTest
     }
 }
 
-class IoAbstractImplementation
-    extends IoAbstract
+class IoAbstractImplementation extends IoAbstract
 {
     public function __construct($filePath, $delimiter, $fileCharset)
     {

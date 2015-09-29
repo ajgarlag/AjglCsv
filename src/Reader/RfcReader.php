@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Reader;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class RfcReader
-    extends ReaderAbstract
+class RfcReader extends ReaderAbstract
 {
     /**
      * {@inheritdoc}

@@ -16,8 +16,7 @@ use Ajgl\Csv\Reader\RfcReader;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class RfcReaderTest
-    extends \PHPUnit_Framework_TestCase
+class RfcReaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var RfcReader
@@ -98,7 +97,7 @@ class RfcReaderTest
     public function testReadingUnixFile()
     {
         $object = new RfcReader(
-             __DIR__.'/_files/rfc_test_lf.csv',
+            __DIR__.'/_files/rfc_test_lf.csv',
             $this->params['delimiter'],
             $this->params['fileCharset'],
             $this->params['mode']
@@ -110,7 +109,7 @@ class RfcReaderTest
     {
         ini_set('auto_detect_line_endings', 1);
         $object = new RfcReader(
-             __DIR__.'/_files/rfc_test_cr.csv',
+            __DIR__.'/_files/rfc_test_cr.csv',
             $this->params['delimiter'],
             $this->params['fileCharset'],
             $this->params['mode']

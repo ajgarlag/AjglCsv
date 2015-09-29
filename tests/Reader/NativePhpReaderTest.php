@@ -16,8 +16,7 @@ use Ajgl\Csv\Reader\NativePhpReader;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class NativePhpReaderTest
-    extends \PHPUnit_Framework_TestCase
+class NativePhpReaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var NativePhpReader

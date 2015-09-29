@@ -17,9 +17,7 @@ use Ajgl\Csv\Io\IoInterface;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-abstract class ReaderAbstract
-    extends IoAbstract
-    implements ReaderInterface
+abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
 {
     /**
      * @var array

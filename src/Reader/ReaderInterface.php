@@ -16,8 +16,7 @@ use Ajgl\Csv\Io\IoInterface;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-interface ReaderInterface
-    extends IoInterface
+interface ReaderInterface extends IoInterface
 {
     /**
      * @param string $inputCharset

@@ -14,8 +14,7 @@ namespace Ajgl\Csv\Charset;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class MbStringConverter
-    implements ConverterInterface
+class MbStringConverter implements ConverterInterface
 {
     /**
      * {@inheritdoc}
