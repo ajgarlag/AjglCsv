@@ -24,14 +24,12 @@
     "suggest": {
         "ext-iconv": "Enabling the iconv extension allows you to convert the string using the IconvConverter class"
     },
-    "minimum-stability": "stable",
     "config": {
         "bin-dir": "bin"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.3.x-dev",
-            "dev-develop": "0.4.x-dev"
+            "dev-master": "0.4.x-dev"
         }
     }
 }
