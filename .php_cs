@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<EOF
-This file is part of the AJGL packages
+AJGL CSV Library
 
 Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
 
