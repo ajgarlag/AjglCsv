@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the AJGL packages
+ * AJGL CSV Library
  *
  * Copyright (C) Antonio J. García Lagar <aj@garcialagar.es>
  *
@@ -48,7 +48,7 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
 
     public function testReadNextRow()
     {
-        $expected = array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo');
+        $expected = array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo');
         $actual = $this->object->readNextRow();
         $this->assertEquals($expected, $actual);
     }
@@ -56,15 +56,15 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
     public function testReadNextRowsWithLimitLesserThanRows()
     {
         $expected = array(
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
-            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
+            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber', '"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber', 'fuu'."\r\n".'"ber"', 'fuu,'."\r\n".'Ber', 'fuu'."\r\n".'Ber,ber', 'fuu'),
         );
         $actual = $this->object->readNextRows(RfcReader::CHARSET_DEFAULT, 2);
         $this->assertEquals($expected, $actual);
 
         $expected = array(
             array(''),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows();
         $this->assertEquals($expected, $actual);
@@ -73,10 +73,10 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
     public function testReadNextRowsWithLimitGreaterThanRows()
     {
         $expected = array(
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
-            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
+            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber', '"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber', 'fuu'."\r\n".'"ber"', 'fuu,'."\r\n".'Ber', 'fuu'."\r\n".'Ber,ber', 'fuu'),
             array(''),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows(RfcReader::CHARSET_DEFAULT, 6);
         $this->assertEquals($expected, $actual);
@@ -85,10 +85,10 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
     public function testReadNextRowsWithoutLimit()
     {
         $expected = array(
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
-            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber','"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber','fuu'."\r\n".'"ber"','fuu,'."\r\n".'Ber','fuu'."\r\n".'Ber,ber', 'fuu'),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
+            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber', '"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber', 'fuu'."\r\n".'"ber"', 'fuu,'."\r\n".'Ber', 'fuu'."\r\n".'Ber,ber', 'fuu'),
             array(''),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar','"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar','foo'."\r\n".'"bar"','foo,'."\r\n".'Bar','foo'."\r\n".'Bar,bar', 'foo'),
+            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
         );
         $actual = $this->object->readNextRows();
         $this->assertEquals($expected, $actual);
