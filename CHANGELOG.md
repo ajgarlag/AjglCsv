@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Migration to PSR-4
 - Leave gitflow workflow
+- Csv Factory renamed `Ajgl\Csv\Csv` to `Ajgl\Csv\CsvFactory`
 
 ### Removed
 - Remove PHP 5.3 support

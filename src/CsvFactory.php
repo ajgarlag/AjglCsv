@@ -19,7 +19,7 @@ use Ajgl\Csv\Writer\WriterInterface;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class Csv
+class CsvFactory
 {
     /**
      * @var string
@@ -52,7 +52,7 @@ class Csv
     }
 
     /**
-     * @return Csv
+     * @return CsvFactory
      */
     public static function create()
     {
