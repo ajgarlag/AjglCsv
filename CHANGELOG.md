@@ -11,6 +11,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Migration to PSR-4
 - Leave gitflow workflow
 
+### Removed
+- Remove PHP 5.3 support
+
 ## [0.3.0] - 2014-08-07
 
 ## [0.2.0] - 2014-03-21
