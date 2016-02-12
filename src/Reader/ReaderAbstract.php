@@ -62,7 +62,7 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
                 array_push($res, $row);
             }
         } else {
-            $limit = (integer) $limit;
+            $limit = (int) $limit;
             for ($i = 0; $i < $limit; ++$i) {
                 if ($row = $this->readNextRow($inputCharset)) {
                     array_push($res, $row);
