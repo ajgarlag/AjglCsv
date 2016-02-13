@@ -12,13 +12,16 @@ EOF;
 Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
 return Symfony\CS\Config\Config::create()
+    ->setUsingCache(true)
     // use default SYMFONY_LEVEL and extra fixers:
     ->fixers(array(
         '-psr0',
+        'header_comment',
+        'newline_after_open_tag',
         'ordered_use',
+        'phpdoc_order',
         'strict',
         'strict_param',
-        'header_comment',
     ))
     ->finder(
         Symfony\CS\Finder\DefaultFinder::create()

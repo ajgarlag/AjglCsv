@@ -144,9 +144,9 @@ abstract class IoAbstract implements IoInterface
     /**
      * @param string $mode
      *
-     * @return \Ajgl\Csv\Io\IoAbstract
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return \Ajgl\Csv\Io\IoAbstract
      */
     protected function setMode($mode)
     {
@@ -175,9 +175,9 @@ abstract class IoAbstract implements IoInterface
      * @param string $filePath
      * @param string $mode
      *
-     * @return resource
-     *
      * @throws \RuntimeException
+     *
+     * @return resource
      */
     protected function openHandler($filePath, $mode)
     {
