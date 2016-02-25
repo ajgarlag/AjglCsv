@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add PHP 5.6 support
 - Add CHANGELOG.md file
+- Leverage [ajgl/csv-rfc](https://github.com/ajgarlag/AjglCsvRfc) for RFC related operations
 
 ### Changed
 - Migration to PSR-4

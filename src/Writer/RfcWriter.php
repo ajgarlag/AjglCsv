@@ -11,6 +11,8 @@
 
 namespace Ajgl\Csv\Writer;
 
+use Ajgl\Csv\Rfc\CsvRfcUtils;
+
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
@@ -26,8 +28,7 @@ class RfcWriter extends WriterAbstract
      */
     protected function doWrite($fileHandler, array $row, $delimiter)
     {
-        $row = $this->arrayToString($row, $delimiter);
-        fwrite($fileHandler, $row.static::EOL);
+        CsvRfcUtils::fPutCsv($fileHandler, $row, $delimiter, '"', '"', self::EOL);
     }
 
     /**

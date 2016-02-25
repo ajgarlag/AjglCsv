@@ -19,7 +19,8 @@
         "psr-4": { "Ajgl\\Csv\\Tests\\": "tests/" }
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "ajgl/csv-rfc": "^0.1.0"
     },
     "suggest": {
         "ext-iconv": "Enabling the iconv extension allows you to convert the string using the IconvConverter class"
