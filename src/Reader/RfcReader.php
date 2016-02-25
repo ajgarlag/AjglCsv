@@ -11,6 +11,8 @@
 
 namespace Ajgl\Csv\Reader;
 
+use Ajgl\Csv\Rfc\CsvRfcUtils;
+
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
@@ -21,7 +23,7 @@ class RfcReader extends ReaderAbstract
      */
     protected function doRead()
     {
-        $row = fgetcsv($this->getHandler(), 0, $this->getDelimiter(), '"', '"');
+        $row = CsvRfcUtils::fGetCsv($this->getHandler(), 0, $this->getDelimiter());
 
         return ($row !== false) ? $row : null;
     }
