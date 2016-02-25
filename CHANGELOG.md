@@ -6,11 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add PHP 5.6 support
 - Add CHANGELOG.md file
-- Leverage [ajgl/csv-rfc](https://github.com/ajgarlag/AjglCsvRfc) for RFC related operations
+- Leverage [ajgl/csv-rfc] for RFC related operations
 
 ### Changed
 - Migration to PSR-4
 - Leave gitflow workflow
+
+## Deprecated
+- Deprecate `Ajgl\Csv\Writer\RfcWriter::arrayToString`. It can be replaced by `Ajgl\Csv\Rfc\CsvRfcUtils::strPutCsv`
+  from [ajgl/csv-rfc]
 
 ### Removed
 - Remove PHP 5.3 support
@@ -30,3 +34,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [0.2.0]: https://github.com/ajgarlag/AjglCsv/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/ajgarlag/AjglCsv/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/ajgarlag/AjglCsv/compare/0.0.1...0.0.2
+
+[ajgl/csv-rfc]: https://github.com/ajgarlag/AjglCsvRfc
