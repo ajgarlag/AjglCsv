@@ -3,8 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
+## [0.4.0] - 2015-02-25
 ### Added
 - Add PHP 5.6 support
+- Add PHP 7.0 support
 - Add CHANGELOG.md file
 - Leverage [ajgl/csv-rfc] for RFC related operations
 
@@ -29,7 +32,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2012-11-15
 
-[unreleased]: https://github.com/ajgarlag/AjglCsv/compare/0.3.0...master
+[unreleased]: https://github.com/ajgarlag/AjglCsv/compare/0.4.0...master
+[0.4.0]: https://github.com/ajgarlag/AjglCsv/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/ajgarlag/AjglCsv/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/ajgarlag/AjglCsv/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/ajgarlag/AjglCsv/compare/0.0.2...0.1.0
