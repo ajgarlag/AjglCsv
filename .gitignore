@@ -1,4 +1,3 @@
-/bin/*
 /vendor/
 *.cache
 composer.lock

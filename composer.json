@@ -25,9 +25,6 @@
     "suggest": {
         "ext-iconv": "Enabling the iconv extension allows you to convert the string using the IconvConverter class"
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.5.x-dev"
