@@ -32,12 +32,7 @@ class RfcWriter extends WriterAbstract
     }
 
     /**
-     * This code was borrowed from goodby/csv under MIT LICENSE.
-     *
-     * @author Hidehito Nozawa <suinyeze@gmail.com>
-     *
-     * @see    https://github.com/goodby/csv
-     * @see    https://github.com/goodby/csv/blob/c6677d9c68323ef734a67a34f3e5feabcafd5b4e/src/Goodby/CSV/Export/Standard/CsvFileObject.php#L46
+     * @deprecated
      *
      * @param array  $row
      * @param string $delimiter
@@ -46,15 +41,6 @@ class RfcWriter extends WriterAbstract
      */
     public static function arrayToString(array $row, $delimiter)
     {
-        $fp = fopen('php://temp', 'w+');
-        fputcsv($fp, $row, $delimiter);
-        rewind($fp);
-        $line = '';
-        while (feof($fp) === false) {
-            $line .= fgets($fp);
-        }
-        fclose($fp);
-
-        return rtrim(str_replace('\"', '\""', $line), "\n");
+        return CsvRfcUtils::strPutCsv($row, $delimiter, '"', '');
     }
 }
