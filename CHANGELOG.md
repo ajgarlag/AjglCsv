@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
-## [0.4.0] - 2015-02-25
+## [0.4.0] - 2016-02-25
 ### Added
 - Add PHP 5.6 support
 - Add PHP 7.0 support
