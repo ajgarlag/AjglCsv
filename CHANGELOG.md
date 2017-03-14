@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Migration to PSR-4
 - Leave gitflow workflow
+- Csv Factory renamed `Ajgl\Csv\Csv` to `Ajgl\Csv\CsvFactory`
 
 ## Deprecated
 - Deprecate `Ajgl\Csv\Writer\RfcWriter::arrayToString`. It can be replaced by `Ajgl\Csv\Rfc\CsvRfcUtils::strPutCsv`
