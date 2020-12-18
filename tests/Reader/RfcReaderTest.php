@@ -18,7 +18,7 @@ use Ajgl\Csv\Reader\RfcReader;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class RfcReaderTest extends \PHPUnit_Framework_TestCase
+class RfcReaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var RfcReader

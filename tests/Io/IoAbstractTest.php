@@ -18,7 +18,7 @@ use Ajgl\Csv\Io\IoAbstract;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class IoAbstractTest extends \PHPUnit_Framework_TestCase
+class IoAbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var IoAbstract
@@ -69,7 +69,7 @@ class IoAbstractTest extends \PHPUnit_Framework_TestCase
 
     public function testSetConverter(): void
     {
-        $converter = $this->getMock('\Ajgl\Csv\Charset\ConverterInterface');
+        $converter = $this->createMock('\Ajgl\Csv\Charset\ConverterInterface');
         $this->assertSame($this->object, $this->object->setConverter($converter));
         $this->assertSame($converter, $this->object->getConverter());
     }

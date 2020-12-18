@@ -16,7 +16,7 @@ namespace Ajgl\Csv\Tests\Charset;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-abstract class ConverterTestAbstract extends \PHPUnit_Framework_TestCase
+abstract class ConverterTestAbstract extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Ajgl\Csv\Charset\ConverterInterface

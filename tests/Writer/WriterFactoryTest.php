@@ -18,7 +18,7 @@ use Ajgl\Csv\Writer\WriterFactory;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class WriterFactoryTest extends \PHPUnit_Framework_TestCase
+class WriterFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var WriterFactory
@@ -30,12 +30,11 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase
         $this->writerFactory = new WriterFactory();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unsupported writer type 'foo'
-     */
     public function testCreateWriterFailsOnUnsupportedWriter(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported writer type \'foo\'');
+
         $this->createWriter('foo');
     }
 

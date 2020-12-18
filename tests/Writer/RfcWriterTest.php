@@ -18,7 +18,7 @@ use Ajgl\Csv\Writer\RfcWriter;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class RfcWriterTest extends \PHPUnit_Framework_TestCase
+class RfcWriterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Ajgl\Csv\Writer\RfcWriter

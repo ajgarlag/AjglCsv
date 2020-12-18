@@ -18,7 +18,7 @@ use Ajgl\Csv\Csv;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class CsvTest extends \PHPUnit_Framework_TestCase
+class CsvTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Csv
@@ -37,8 +37,8 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp(): void
     {
-        $this->readerFactory = $this->getMock('\Ajgl\Csv\Reader\ReaderFactoryInterface');
-        $this->writerFactory = $this->getMock('\Ajgl\Csv\Writer\WriterFactoryInterface');
+        $this->readerFactory = $this->createMock('\Ajgl\Csv\Reader\ReaderFactoryInterface');
+        $this->writerFactory = $this->createMock('\Ajgl\Csv\Writer\WriterFactoryInterface');
         $this->csv = new Csv($this->readerFactory, $this->writerFactory);
     }
 
@@ -71,7 +71,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 
     public function testSetReaderFactory(): void
     {
-        $readerFactory = $this->getMock('\Ajgl\Csv\Reader\ReaderFactoryInterface');
+        $readerFactory = $this->createMock('\Ajgl\Csv\Reader\ReaderFactoryInterface');
         $this->assertNull($this->csv->setReaderFactory($readerFactory));
         $this->assertSame($readerFactory, $this->csv->getReaderFactory());
     }
@@ -83,7 +83,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 
     public function testSetWriterFactory(): void
     {
-        $writerFactory = $this->getMock('\Ajgl\Csv\Writer\WriterFactoryInterface');
+        $writerFactory = $this->createMock('\Ajgl\Csv\Writer\WriterFactoryInterface');
         $this->assertNull($this->csv->setWriterFactory($writerFactory));
         $this->assertSame($writerFactory, $this->csv->getWriterFactory());
     }
@@ -101,7 +101,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
                 $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT),
                 $this->equalTo('r')
             )
-            ->willReturn($this->getMock('\Ajgl\Csv\Reader\ReaderInterface'))
+            ->willReturn($this->createMock('\Ajgl\Csv\Reader\ReaderInterface'))
         ;
 
         $this->csv->createReader($path);
@@ -120,7 +120,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
                 $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT),
                 $this->equalTo('w')
             )
-            ->willReturn($this->getMock('\Ajgl\Csv\Writer\WriterInterface'))
+            ->willReturn($this->createMock('\Ajgl\Csv\Writer\WriterInterface'))
         ;
 
         $this->csv->createWriter($path);

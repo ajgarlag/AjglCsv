@@ -18,7 +18,7 @@ use Ajgl\Csv\Reader\ReaderFactory;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class ReaderFactoryTest extends \PHPUnit_Framework_TestCase
+class ReaderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ReaderFactory
@@ -30,12 +30,11 @@ class ReaderFactoryTest extends \PHPUnit_Framework_TestCase
         $this->readerFactory = new ReaderFactory();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unsupported reader type 'foo'
-     */
     public function testCreateReaderFailsOnUnsupportedReader(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported reader type \'foo\'');
+
         $this->createReader('foo');
     }
 

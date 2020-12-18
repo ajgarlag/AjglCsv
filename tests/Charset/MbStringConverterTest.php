@@ -43,6 +43,7 @@ class MbStringConverterTest extends ConverterTestAbstract
     public function testDoNoReportNoticeOnIllegalCharacter($outputCharset, $pangram): void
     {
         $pangrams = static::getPangrams();
-        $this->object->convert($pangram, 'UTF-8', 'ISO-8859-1');
+        $converted = $this->object->convert($pangram, 'UTF-8', 'ISO-8859-1');
+        $this->assertNotEquals($pangrams, $converted);
     }
 }

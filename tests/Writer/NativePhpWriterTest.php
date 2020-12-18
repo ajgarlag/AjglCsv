@@ -18,7 +18,7 @@ use Ajgl\Csv\Writer\NativePhpWriter;
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
-class NativePhpWriterTest extends \PHPUnit_Framework_TestCase
+class NativePhpWriterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Ajgl\Csv\Writer\NativePhpWriter
