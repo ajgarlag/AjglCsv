@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Require friendsofphp/php-cs-fixer for development and fix-cs
 - Migrate code to PHP 7.3 adding scalar param type hints and return types
 - Upgrade phpunit dependency and fix tests
+- Migrate from travis-ci to github actions
 
 ## Changed
 - Require PHP >=7.3 or >=8.0

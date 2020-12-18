@@ -31,7 +31,7 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
         parent::__construct($filePath, $mode, $delimiter, $fileCharset);
     }
 
-    public function writeRow(array $row, string $inputCharset = IoInterface::CHARSET_DEFAULT): self
+    public function writeRow(array $row, string $inputCharset = IoInterface::CHARSET_DEFAULT): WriterInterface
     {
         if ($inputCharset !== $this->getFileCharset()) {
             $row = $this->convertRowCharset($row, $inputCharset, $this->getFileCharset());
@@ -41,7 +41,7 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
         return $this;
     }
 
-    public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT): self
+    public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT): WriterInterface
     {
         foreach ($rows as $row) {
             $this->writeRow($row, $inputCharset);

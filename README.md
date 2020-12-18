@@ -3,15 +3,13 @@ AjglCsv
 
 The AjglCsv component allows you to read and write CSV files.
 
-[![Build Status](https://travis-ci.org/ajgarlag/AjglCsv.png?branch=master)](https://travis-ci.org/ajgarlag/AjglCsv)
+[![Build Status](https://github.com/ajgarlag/AjglCsv/workflows/test/badge.svg?branch=master)](https://github.com/ajgarlag/AjglCsv/actions)
 [![Latest Stable Version](https://poser.pugx.org/ajgl/csv/v/stable.png)](https://packagist.org/packages/ajgl/csv)
 [![Latest Unstable Version](https://poser.pugx.org/ajgl/csv/v/unstable.png)](https://packagist.org/packages/ajgl/csv)
 [![Total Downloads](https://poser.pugx.org/ajgl/csv/downloads.png)](https://packagist.org/packages/ajgl/csv)
 [![Montly Downloads](https://poser.pugx.org/ajgl/csv/d/monthly.png)](https://packagist.org/packages/ajgl/csv)
 [![Daily Downloads](https://poser.pugx.org/ajgl/csv/d/daily.png)](https://packagist.org/packages/ajgl/csv)
 [![License](https://poser.pugx.org/ajgl/csv/license.png)](https://packagist.org/packages/ajgl/csv)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ajgarlag/AjglCsv/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/47a8fbe8-c9f7-48d8-a0e7-4b3906d8e48f/mini.png)](https://insight.sensiolabs.com/projects/47a8fbe8-c9f7-48d8-a0e7-4b3906d8e48f)
 [![StyleCI](https://styleci.io/repos/6671306/shield)](https://styleci.io/repos/6671306)
 
