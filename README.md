@@ -11,7 +11,6 @@ The AjglCsv component allows you to read and write CSV files.
 [![Daily Downloads](https://poser.pugx.org/ajgl/csv/d/daily.png)](https://packagist.org/packages/ajgl/csv)
 [![License](https://poser.pugx.org/ajgl/csv/license.png)](https://packagist.org/packages/ajgl/csv)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/47a8fbe8-c9f7-48d8-a0e7-4b3906d8e48f/mini.png)](https://insight.sensiolabs.com/projects/47a8fbe8-c9f7-48d8-a0e7-4b3906d8e48f)
-[![StyleCI](https://styleci.io/repos/6671306/shield)](https://styleci.io/repos/6671306)
 
 There are currently two different implementations for the reader and writer classes:
 
