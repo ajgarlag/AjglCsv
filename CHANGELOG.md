@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## Added
+- Require phpunit/phpunit for development
+
 ## [0.4.0] - 2016-02-25
 ### Added
 - Add PHP 5.6 support

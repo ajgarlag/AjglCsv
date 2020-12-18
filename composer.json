@@ -22,8 +22,17 @@
         "php": ">=5.4.0",
         "ajgl/csv-rfc": "^0.1.0"
     },
+    "require-dev": {
+         "phpunit/phpunit": "^4.8 || ^5.7"
+    },
     "suggest": {
         "ext-iconv": "Enabling the iconv extension allows you to convert the string using the IconvConverter class"
+    },
+    "scripts": {
+        "phpunit": "vendor/bin/phpunit --colors=always",
+        "test": [
+            "@phpunit"
+        ]
     },
     "extra": {
         "branch-alias": {
