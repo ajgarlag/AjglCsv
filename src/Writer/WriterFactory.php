@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -16,16 +18,13 @@ namespace Ajgl\Csv\Writer;
  */
 class WriterFactory implements WriterFactoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function createWriter(
-        $type,
-        $filePath,
-        $delimiter = WriterInterface::DELIMITER_DEFAULT,
-        $fileCharset = WriterInterface::CHARSET_DEFAULT,
-        $mode = 'w'
-    ) {
+        string $type,
+        string $filePath,
+        string $delimiter = WriterInterface::DELIMITER_DEFAULT,
+        string $fileCharset = WriterInterface::CHARSET_DEFAULT,
+        string $mode = 'w'
+    ): WriterInterface {
         switch ($type) {
             case 'php':
                 return new NativePhpWriter($filePath, $delimiter, $fileCharset, $mode);

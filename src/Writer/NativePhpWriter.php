@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -11,15 +13,14 @@
 
 namespace Ajgl\Csv\Writer;
 
+use function fputcsv;
+
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
 class NativePhpWriter extends WriterAbstract
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function doWrite($fileHandler, array $row, $delimiter)
+    protected function doWrite($fileHandler, array $row, $delimiter): void
     {
         $res = @fputcsv($fileHandler, $row, $delimiter);
         if (false === $res) {

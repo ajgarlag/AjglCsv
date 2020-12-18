@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -18,10 +20,7 @@ use Ajgl\Csv\Rfc\CsvRfcUtils;
  */
 class RfcReader extends ReaderAbstract
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function doRead()
+    protected function doRead(): ?array
     {
         $row = CsvRfcUtils::fGetCsv($this->getHandler(), 0, $this->getDelimiter());
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -23,10 +25,7 @@ class RfcWriter extends WriterAbstract
      */
     const EOL = "\r\n";
 
-    /**
-     * @category   Ajgl
-     */
-    protected function doWrite($fileHandler, array $row, $delimiter)
+    protected function doWrite($fileHandler, array $row, $delimiter): void
     {
         CsvRfcUtils::fPutCsv($fileHandler, $row, $delimiter, '"', '\\', self::EOL);
     }

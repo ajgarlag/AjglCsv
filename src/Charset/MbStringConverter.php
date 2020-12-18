@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -16,10 +18,7 @@ namespace Ajgl\Csv\Charset;
  */
 class MbStringConverter implements ConverterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function convert($value, $inputCharset, $outputCharset)
+    public function convert(string $value, string $inputCharset, string $outputCharset): string
     {
         if ($inputCharset !== $outputCharset) {
             $value = mb_convert_encoding($value, $outputCharset, $inputCharset);

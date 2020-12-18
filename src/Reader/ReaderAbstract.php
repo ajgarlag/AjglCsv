@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -24,23 +26,12 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
      */
     protected $validModes = ['r', 'r+', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+'];
 
-    /**
-     * Class constructor.
-     *
-     * @param string $filePath
-     * @param string $delimiter
-     * @param string $fileCharset
-     * @param string $mode
-     */
-    public function __construct($filePath, $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT, $mode = 'r')
+    public function __construct(string $filePath, string $delimiter = ReaderInterface::DELIMITER_DEFAULT, string $fileCharset = ReaderInterface::CHARSET_DEFAULT, string $mode = 'r')
     {
         parent::__construct($filePath, $mode, $delimiter, $fileCharset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function readNextRow($outputCharset = IoInterface::CHARSET_DEFAULT)
+    public function readNextRow(string $outputCharset = IoInterface::CHARSET_DEFAULT): ?array
     {
         $row = $this->doRead($this->getHandler(), $this->getDelimiter());
 
@@ -51,10 +42,7 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
         return $row;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function readNextRows($inputCharset = IoInterface::CHARSET_DEFAULT, $limit = null)
+    public function readNextRows(string $inputCharset = IoInterface::CHARSET_DEFAULT, $limit = null): array
     {
         $res = [];
         if (null === $limit) {
@@ -75,8 +63,5 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
         return $res;
     }
 
-    /**
-     * @return array
-     */
-    abstract protected function doRead();
+    abstract protected function doRead(): ?array;
 }

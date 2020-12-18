@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -18,13 +20,7 @@ use Ajgl\Csv\Io\IoInterface;
  */
 interface WriterInterface extends IoInterface
 {
-    /**
-     * @param type $inputCharset
-     */
-    public function writeRow(array $row, $inputCharset = IoInterface::CHARSET_DEFAULT);
+    public function writeRow(array $row, string $inputCharset = IoInterface::CHARSET_DEFAULT): self;
 
-    /**
-     * @param type $inputCharset
-     */
-    public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT);
+    public function writeRows(array $rows, string $inputCharset = IoInterface::CHARSET_DEFAULT): self;
 }

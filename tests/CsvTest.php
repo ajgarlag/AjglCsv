@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -33,60 +35,60 @@ class CsvTest extends \PHPUnit_Framework_TestCase
      */
     protected $writerFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->readerFactory = $this->getMock('\Ajgl\Csv\Reader\ReaderFactoryInterface');
         $this->writerFactory = $this->getMock('\Ajgl\Csv\Writer\WriterFactoryInterface');
         $this->csv = new Csv($this->readerFactory, $this->writerFactory);
     }
 
-    public function testDefaultReaderType()
+    public function testDefaultReaderType(): void
     {
         $this->assertSame('php', $this->csv->getDefaultReaderType());
     }
 
-    public function testSetDefaultReaderType()
+    public function testSetDefaultReaderType(): void
     {
         $this->assertNull($this->csv->setDefaultReaderType('foo'));
         $this->assertSame('foo', $this->csv->getDefaultReaderType());
     }
 
-    public function testDefaultWriterType()
+    public function testDefaultWriterType(): void
     {
         $this->assertSame('php', $this->csv->getDefaultWriterType());
     }
 
-    public function testSetDefaultWriterType()
+    public function testSetDefaultWriterType(): void
     {
         $this->assertNull($this->csv->setDefaultWriterType('foo'));
         $this->assertSame('foo', $this->csv->getDefaultWriterType());
     }
 
-    public function testGetReaderFactory()
+    public function testGetReaderFactory(): void
     {
         $this->assertSame($this->readerFactory, $this->csv->getReaderFactory());
     }
 
-    public function testSetReaderFactory()
+    public function testSetReaderFactory(): void
     {
         $readerFactory = $this->getMock('\Ajgl\Csv\Reader\ReaderFactoryInterface');
         $this->assertNull($this->csv->setReaderFactory($readerFactory));
         $this->assertSame($readerFactory, $this->csv->getReaderFactory());
     }
 
-    public function testGetWriterFactory()
+    public function testGetWriterFactory(): void
     {
         $this->assertSame($this->writerFactory, $this->csv->getWriterFactory());
     }
 
-    public function testSetWriterFactory()
+    public function testSetWriterFactory(): void
     {
         $writerFactory = $this->getMock('\Ajgl\Csv\Writer\WriterFactoryInterface');
         $this->assertNull($this->csv->setWriterFactory($writerFactory));
         $this->assertSame($writerFactory, $this->csv->getWriterFactory());
     }
 
-    public function testCreateReader()
+    public function testCreateReader(): void
     {
         $path = tempnam(sys_get_temp_dir(), __NAMESPACE__.'\\'.__CLASS__);
         $this->readerFactory
@@ -99,12 +101,13 @@ class CsvTest extends \PHPUnit_Framework_TestCase
                 $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT),
                 $this->equalTo('r')
             )
+            ->willReturn($this->getMock('\Ajgl\Csv\Reader\ReaderInterface'))
         ;
 
         $this->csv->createReader($path);
     }
 
-    public function testCreateWriter()
+    public function testCreateWriter(): void
     {
         $path = tempnam(sys_get_temp_dir(), __NAMESPACE__.'\\'.__CLASS__);
         $this->writerFactory
@@ -117,12 +120,13 @@ class CsvTest extends \PHPUnit_Framework_TestCase
                 $this->equalTo(\Ajgl\Csv\Io\IoInterface::CHARSET_DEFAULT),
                 $this->equalTo('w')
             )
+            ->willReturn($this->getMock('\Ajgl\Csv\Writer\WriterInterface'))
         ;
 
         $this->csv->createWriter($path);
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $this->assertInstanceOf('Ajgl\Csv\Csv', Csv::create());
     }

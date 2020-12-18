@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -16,20 +18,11 @@ namespace Ajgl\Csv\Writer;
  */
 interface WriterFactoryInterface
 {
-    /**
-     * @param string $type
-     * @param string $filePath
-     * @param string $delimiter
-     * @param string $fileCharset
-     * @param string $mode
-     *
-     * @return WriterInterface
-     */
     public function createWriter(
-        $type,
-        $filePath,
-        $delimiter = WriterInterface::DELIMITER_DEFAULT,
-        $fileCharset = WriterInterface::CHARSET_DEFAULT,
-        $mode = 'w'
-    );
+        string $type,
+        string $filePath,
+        string $delimiter = WriterInterface::DELIMITER_DEFAULT,
+        string $fileCharset = WriterInterface::CHARSET_DEFAULT,
+        string $mode = 'w'
+    ): WriterInterface;
 }

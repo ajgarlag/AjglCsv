@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -18,18 +20,7 @@ use Ajgl\Csv\Io\IoInterface;
  */
 interface ReaderInterface extends IoInterface
 {
-    /**
-     * @param string $inputCharset
-     *
-     * @return array | null
-     */
-    public function readNextRow($inputCharset = IoInterface::CHARSET_DEFAULT_INPUT);
+    public function readNextRow(string $inputCharset = IoInterface::CHARSET_DEFAULT): ?array;
 
-    /**
-     * @param string $inputCharset
-     * @param int    $limit
-     *
-     * @return array
-     */
-    public function readNextRows($inputCharset = IoInterface::CHARSET_DEFAULT_INPUT, $limit = null);
+    public function readNextRows(string $inputCharset = IoInterface::CHARSET_DEFAULT, $limit = null): array;
 }

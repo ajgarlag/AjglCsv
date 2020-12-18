@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -47,10 +49,7 @@ class Csv
         $this->setWriterFactory($writerFactory);
     }
 
-    /**
-     * @return Csv
-     */
-    public static function create()
+    public static function create(): self
     {
         return new self(
             new Reader\ReaderFactory(),
@@ -58,74 +57,47 @@ class Csv
         );
     }
 
-    /**
-     * @return ReaderFactoryInterface
-     */
-    public function getReaderFactory()
+    public function getReaderFactory(): ReaderFactoryInterface
     {
         return $this->readerFactory;
     }
 
-    public function setReaderFactory(ReaderFactoryInterface $readerFactory)
+    public function setReaderFactory(ReaderFactoryInterface $readerFactory): void
     {
         $this->readerFactory = $readerFactory;
     }
 
-    /**
-     * @return WriterFactoryInterface
-     */
-    public function getWriterFactory()
+    public function getWriterFactory(): WriterFactoryInterface
     {
         return $this->writerFactory;
     }
 
-    public function setWriterFactory(WriterFactoryInterface $writerFactory)
+    public function setWriterFactory(WriterFactoryInterface $writerFactory): void
     {
         $this->writerFactory = $writerFactory;
     }
 
-    /**
-     * @return string
-     */
-    public function getDefaultReaderType()
+    public function getDefaultReaderType(): string
     {
         return $this->defaultReaderType;
     }
 
-    /**
-     * @param string $defaultReaderType
-     */
-    public function setDefaultReaderType($defaultReaderType)
+    public function setDefaultReaderType(string $defaultReaderType): void
     {
         $this->defaultReaderType = $defaultReaderType;
     }
 
-    /**
-     * @return string
-     */
-    public function getDefaultWriterType()
+    public function getDefaultWriterType(): string
     {
         return $this->defaultWriterType;
     }
 
-    /**
-     * @param string $defaultWriterType
-     */
-    public function setDefaultWriterType($defaultWriterType)
+    public function setDefaultWriterType(string $defaultWriterType): void
     {
         $this->defaultWriterType = $defaultWriterType;
     }
 
-    /**
-     * @param string $filePath
-     * @param string $delimiter
-     * @param string $fileCharset
-     * @param string $mode
-     * @param string $type
-     *
-     * @return ReaderInterface
-     */
-    public function createReader($filePath, $delimiter = ReaderInterface::DELIMITER_DEFAULT, $fileCharset = ReaderInterface::CHARSET_DEFAULT, $mode = 'r', $type = null)
+    public function createReader(string $filePath, string $delimiter = ReaderInterface::DELIMITER_DEFAULT, string $fileCharset = ReaderInterface::CHARSET_DEFAULT, string $mode = 'r', string $type = null): ReaderInterface
     {
         if (null === $type) {
             $type = $this->getDefaultReaderType();
@@ -134,16 +106,7 @@ class Csv
         return $this->getReaderFactory()->createReader($type, $filePath, $delimiter, $fileCharset, $mode);
     }
 
-    /**
-     * @param string $filePath
-     * @param string $delimiter
-     * @param string $fileCharset
-     * @param string $mode
-     * @param string $type
-     *
-     * @return WriterInterface
-     */
-    public function createWriter($filePath, $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT, $mode = 'w', $type = null)
+    public function createWriter(string $filePath, string $delimiter = WriterInterface::DELIMITER_DEFAULT, string $fileCharset = WriterInterface::CHARSET_DEFAULT, string $mode = 'w', string $type = null): WriterInterface
     {
         if (null === $type) {
             $type = $this->getDefaultWriterType();

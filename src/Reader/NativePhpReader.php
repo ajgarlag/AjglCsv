@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -11,15 +13,14 @@
 
 namespace Ajgl\Csv\Reader;
 
+use function fgetcsv;
+
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
  */
 class NativePhpReader extends ReaderAbstract
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function doRead()
+    protected function doRead(): ?array
     {
         $row = fgetcsv($this->getHandler(), 0, $this->getDelimiter());
 

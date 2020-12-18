@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -24,23 +26,12 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
      */
     protected $validModes = ['r+', 'w', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+'];
 
-    /**
-     * Class constructor.
-     *
-     * @param string $filePath
-     * @param string $delimiter
-     * @param string $fileCharset
-     * @param string $mode
-     */
-    public function __construct($filePath, $delimiter = WriterInterface::DELIMITER_DEFAULT, $fileCharset = WriterInterface::CHARSET_DEFAULT, $mode = 'w')
+    public function __construct(string $filePath, string $delimiter = WriterInterface::DELIMITER_DEFAULT, string $fileCharset = WriterInterface::CHARSET_DEFAULT, string $mode = 'w')
     {
         parent::__construct($filePath, $mode, $delimiter, $fileCharset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function writeRow(array $row, $inputCharset = IoInterface::CHARSET_DEFAULT)
+    public function writeRow(array $row, string $inputCharset = IoInterface::CHARSET_DEFAULT): self
     {
         if ($inputCharset !== $this->getFileCharset()) {
             $row = $this->convertRowCharset($row, $inputCharset, $this->getFileCharset());
@@ -50,10 +41,7 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT)
+    public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT): self
     {
         foreach ($rows as $row) {
             $this->writeRow($row, $inputCharset);
@@ -66,5 +54,5 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
      * @param resource $fileHandler
      * @param string   $delimiter
      */
-    abstract protected function doWrite($fileHandler, array $row, $delimiter);
+    abstract protected function doWrite($fileHandler, array $row, $delimiter): void;
 }

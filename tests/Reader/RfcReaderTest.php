@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -28,7 +30,7 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
      */
     protected $params = [];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -46,14 +48,14 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testReadNextRow()
+    public function testReadNextRow(): void
     {
         $expected = ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'];
         $actual = $this->object->readNextRow();
         $this->assertEquals($expected, $actual);
     }
 
-    public function testReadNextRowsWithLimitLesserThanRows()
+    public function testReadNextRowsWithLimitLesserThanRows(): void
     {
         $expected = [
             ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'],
@@ -70,7 +72,7 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testReadNextRowsWithLimitGreaterThanRows()
+    public function testReadNextRowsWithLimitGreaterThanRows(): void
     {
         $expected = [
             ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'],
@@ -82,7 +84,7 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testReadNextRowsWithoutLimit()
+    public function testReadNextRowsWithoutLimit(): void
     {
         $expected = [
             ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'],
@@ -94,7 +96,7 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testReadingUnixFile()
+    public function testReadingUnixFile(): void
     {
         $object = new RfcReader(
             __DIR__.'/_files/rfc_test_lf.csv',
@@ -105,9 +107,9 @@ class RfcReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $object->readNextRows());
     }
 
-    public function testReadingMacFile()
+    public function testReadingMacFile(): void
     {
-        ini_set('auto_detect_line_endings', 1);
+        ini_set('auto_detect_line_endings', '1');
         $object = new RfcReader(
             __DIR__.'/_files/rfc_test_cr.csv',
             $this->params['delimiter'],

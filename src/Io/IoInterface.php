@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -10,6 +12,8 @@
  */
 
 namespace Ajgl\Csv\Io;
+
+use Ajgl\Csv\Charset\ConverterInterface;
 
 /**
  * @author Antonio J. García Lagar <aj@garcialagar.es>
@@ -26,23 +30,11 @@ interface IoInterface
      */
     const DELIMITER_DEFAULT = ',';
 
-    /**
-     * @return string
-     */
-    public function getFilePath();
+    public function getFilePath(): string;
 
-    /**
-     * @return string
-     */
-    public function getDelimiter();
+    public function getDelimiter(): string;
 
-    /**
-     * @return string
-     */
-    public function getFileCharset();
+    public function getFileCharset(): string;
 
-    /**
-     * @return \Ajgl\Csv\Charset\ConverterInterface
-     */
-    public function getConverter();
+    public function getConverter(): ConverterInterface;
 }

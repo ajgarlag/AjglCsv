@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -28,7 +30,7 @@ class IoAbstractTest extends \PHPUnit_Framework_TestCase
      */
     protected $params = [];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -45,27 +47,27 @@ class IoAbstractTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetFilePath()
+    public function testGetFilePath(): void
     {
         $this->assertEquals($this->params['filePath'], $this->object->getFilePath());
     }
 
-    public function testGetDelimeter()
+    public function testGetDelimeter(): void
     {
         $this->assertEquals($this->params['delimiter'], $this->object->getDelimiter());
     }
 
-    public function testGetFileCharset()
+    public function testGetFileCharset(): void
     {
         $this->assertEquals($this->params['fileCharset'], $this->object->getFileCharset());
     }
 
-    public function testGetConverter()
+    public function testGetConverter(): void
     {
         $this->assertInstanceOf('\Ajgl\Csv\Charset\ConverterInterface', $this->object->getConverter());
     }
 
-    public function testSetConverter()
+    public function testSetConverter(): void
     {
         $converter = $this->getMock('\Ajgl\Csv\Charset\ConverterInterface');
         $this->assertSame($this->object, $this->object->setConverter($converter));

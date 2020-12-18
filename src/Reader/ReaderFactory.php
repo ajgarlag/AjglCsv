@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -16,16 +18,13 @@ namespace Ajgl\Csv\Reader;
  */
 class ReaderFactory implements ReaderFactoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function createReader(
-        $type,
-        $filePath,
-        $delimiter = ReaderInterface::DELIMITER_DEFAULT,
-        $fileCharset = ReaderInterface::CHARSET_DEFAULT,
-        $mode = 'r'
-    ) {
+        string $type,
+        string $filePath,
+        string $delimiter = ReaderInterface::DELIMITER_DEFAULT,
+        string $fileCharset = ReaderInterface::CHARSET_DEFAULT,
+        string $mode = 'r'
+    ): ReaderInterface {
         switch ($type) {
             case 'php':
                 return new NativePhpReader($filePath, $delimiter, $fileCharset, $mode);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -23,7 +25,7 @@ class ReaderFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected $readerFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->readerFactory = new ReaderFactory();
     }
@@ -32,12 +34,12 @@ class ReaderFactoryTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Unsupported reader type 'foo'
      */
-    public function testCreateReaderFailsOnUnsupportedReader()
+    public function testCreateReaderFailsOnUnsupportedReader(): void
     {
         $this->createReader('foo');
     }
 
-    public function testCreateReaderCreatesCorrectReaderType()
+    public function testCreateReaderCreatesCorrectReaderType(): void
     {
         $nativeReader = $this->createReader('php');
         $this->assertInstanceOf('\Ajgl\Csv\Reader\NativePhpReader', $nativeReader);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -18,7 +20,7 @@ use Ajgl\Csv\Charset\IconvConverter;
  */
 class IconvConverterTest extends ConverterTestAbstract
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -28,7 +30,7 @@ class IconvConverterTest extends ConverterTestAbstract
     /**
      * @dataProvider getPangrams
      */
-    public function testConvert($outputCharset, $pangram)
+    public function testConvert($outputCharset, $pangram): void
     {
         $expected = iconv('UTF-8', $outputCharset, $pangram);
         $actual = $this->object->convert($pangram, 'UTF-8', $outputCharset);

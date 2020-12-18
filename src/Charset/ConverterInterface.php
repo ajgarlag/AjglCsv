@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -16,12 +18,5 @@ namespace Ajgl\Csv\Charset;
  */
 interface ConverterInterface
 {
-    /**
-     * @param string $value
-     * @param string $inputCharset
-     * @param string $outputCharset
-     *
-     * @return string
-     */
-    public function convert($value, $inputCharset, $outputCharset);
+    public function convert(string $value, string $inputCharset, string $outputCharset): string;
 }

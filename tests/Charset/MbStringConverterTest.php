@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -18,7 +20,7 @@ use Ajgl\Csv\Charset\MbStringConverter;
  */
 class MbStringConverterTest extends ConverterTestAbstract
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -28,7 +30,7 @@ class MbStringConverterTest extends ConverterTestAbstract
     /**
      * @dataProvider getPangrams
      */
-    public function testConvert($outputCharset, $pangram)
+    public function testConvert($outputCharset, $pangram): void
     {
         $expected = mb_convert_encoding($pangram, $outputCharset, 'UTF-8');
         $actual = $this->object->convert($pangram, 'UTF-8', $outputCharset);
@@ -38,7 +40,7 @@ class MbStringConverterTest extends ConverterTestAbstract
     /**
      * @dataProvider getPangrams
      */
-    public function testDoNoReportNoticeOnIllegalCharacter($outputCharset, $pangram)
+    public function testDoNoReportNoticeOnIllegalCharacter($outputCharset, $pangram): void
     {
         $pangrams = static::getPangrams();
         $this->object->convert($pangram, 'UTF-8', 'ISO-8859-1');

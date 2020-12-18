@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -16,20 +18,11 @@ namespace Ajgl\Csv\Reader;
  */
 interface ReaderFactoryInterface
 {
-    /**
-     * @param string $type
-     * @param string $filePath
-     * @param string $delimiter
-     * @param string $fileCharset
-     * @param string $mode
-     *
-     * @return ReaderInterface
-     */
     public function createReader(
-        $type,
-        $filePath,
-        $delimiter = ReaderInterface::DELIMITER_DEFAULT,
-        $fileCharset = ReaderInterface::CHARSET_DEFAULT,
-        $mode = 'r'
-    );
+        string $type,
+        string $filePath,
+        string $delimiter = ReaderInterface::DELIMITER_DEFAULT,
+        string $fileCharset = ReaderInterface::CHARSET_DEFAULT,
+        string $mode = 'r'
+    ): ReaderInterface;
 }

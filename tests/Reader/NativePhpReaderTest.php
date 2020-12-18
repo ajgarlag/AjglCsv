@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -28,7 +30,7 @@ class NativePhpReaderTest extends \PHPUnit_Framework_TestCase
      */
     protected $params = [];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -46,14 +48,14 @@ class NativePhpReaderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testReadNextRow()
+    public function testReadNextRow(): void
     {
         $expected = ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'];
         $actual = $this->object->readNextRow();
         $this->assertEquals($expected, $actual);
     }
 
-    public function testReadNextRows()
+    public function testReadNextRows(): void
     {
         $expected = [
             ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'],

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -23,7 +25,7 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected $writerFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writerFactory = new WriterFactory();
     }
@@ -32,12 +34,12 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Unsupported writer type 'foo'
      */
-    public function testCreateWriterFailsOnUnsupportedWriter()
+    public function testCreateWriterFailsOnUnsupportedWriter(): void
     {
         $this->createWriter('foo');
     }
 
-    public function testCreateWriterCreatesCorrectWriterType()
+    public function testCreateWriterCreatesCorrectWriterType(): void
     {
         $nativeWriter = $this->createWriter('php');
         $this->assertInstanceOf('\Ajgl\Csv\Writer\NativePhpWriter', $nativeWriter);

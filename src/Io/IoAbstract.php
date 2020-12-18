@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -54,19 +56,11 @@ abstract class IoAbstract implements IoInterface
      */
     protected $validModes = [];
 
-    /**
-     * Class constructor.
-     *
-     * @param string $filePath
-     * @param string $mode
-     * @param string $delimiter
-     * @param string $fileCharset
-     */
     public function __construct(
-        $filePath,
-        $mode,
-        $delimiter = IoInterface::DELIMITER_DEFAULT,
-        $fileCharset = IoInterface::CHARSET_DEFAULT
+        string $filePath,
+        string $mode,
+        string $delimiter = IoInterface::DELIMITER_DEFAULT,
+        string $fileCharset = IoInterface::CHARSET_DEFAULT
     ) {
         $this->filePath = $filePath;
         $this->fileCharset = $fileCharset;
@@ -75,34 +69,22 @@ abstract class IoAbstract implements IoInterface
         $this->setMode($mode);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFilePath()
+    public function getFilePath(): string
     {
         return $this->filePath;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFileCharset()
+    public function getFileCharset(): string
     {
         return $this->fileCharset;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getDelimiter()
+    public function getDelimiter(): string
     {
         return $this->delimiter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getConverter()
+    public function getConverter(): ConverterInterface
     {
         if (null === $this->converter) {
             $this->setConverter(new MbStringConverter());
@@ -111,20 +93,14 @@ abstract class IoAbstract implements IoInterface
         return $this->converter;
     }
 
-    /**
-     * @return \Ajgl\Csv\Io\IoAbstract
-     */
-    public function setConverter(ConverterInterface $converter)
+    public function setConverter(ConverterInterface $converter): self
     {
         $this->converter = $converter;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function close()
+    public function close(): void
     {
         if (\is_resource($this->fileHandler)) {
             $res = @fclose($this->fileHandler);
@@ -140,13 +116,9 @@ abstract class IoAbstract implements IoInterface
     }
 
     /**
-     * @param string $mode
-     *
      * @throws \InvalidArgumentException
-     *
-     * @return \Ajgl\Csv\Io\IoAbstract
      */
-    protected function setMode($mode)
+    protected function setMode(string $mode): self
     {
         $mode = substr((string) $mode, 0, 2);
         if (!\in_array($mode, $this->validModes, true)) {
@@ -170,14 +142,11 @@ abstract class IoAbstract implements IoInterface
     }
 
     /**
-     * @param string $filePath
-     * @param string $mode
-     *
      * @throws \RuntimeException
      *
      * @return resource
      */
-    protected function openHandler($filePath, $mode)
+    protected function openHandler(string $filePath, string $mode)
     {
         $fileHandler = @fopen($filePath, $mode);
         if (false === $fileHandler) {
@@ -187,16 +156,12 @@ abstract class IoAbstract implements IoInterface
         return $fileHandler;
     }
 
-    /**
-     * @param string $inputCharset
-     * @param string $fileCharset
-     *
-     * @return array
-     */
-    protected function convertRowCharset(array $row, $inputCharset, $fileCharset)
+    protected function convertRowCharset(array $row, string $inputCharset, string $fileCharset): array
     {
         foreach ($row as $k => $v) {
-            $row[$k] = $this->getConverter()->convert($v, $inputCharset, $fileCharset);
+            if (\is_string($v)) {
+                $row[$k] = $this->getConverter()->convert($v, $inputCharset, $fileCharset);
+            }
         }
 
         return $row;

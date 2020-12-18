@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AJGL CSV Library
  *
@@ -28,7 +30,7 @@ class RfcWriterTest extends \PHPUnit_Framework_TestCase
      */
     protected $params = [];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -46,7 +48,7 @@ class RfcWriterTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testWrite()
+    public function testWrite(): void
     {
         $this->object->writeRow(['foo', 'bar', 'fú', 'foo"bar\"']);
         $this->object->close();
