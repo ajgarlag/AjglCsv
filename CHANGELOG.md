@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Added
 - Require phpunit/phpunit for development
 
+## Changed
+- Require PHP >=7.3 or >=8.0
+
 ## [0.4.0] - 2016-02-25
 ### Added
 - Add PHP 5.6 support

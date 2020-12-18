@@ -19,7 +19,7 @@
         "psr-4": { "Ajgl\\Csv\\Tests\\": "tests/" }
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": "^7.3 || ^8.0",
         "ajgl/csv-rfc": "^0.1.0"
     },
     "require-dev": {
