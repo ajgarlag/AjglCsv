@@ -30,17 +30,4 @@ class RfcWriter extends WriterAbstract
     {
         CsvRfcUtils::fPutCsv($fileHandler, $row, $delimiter, '"', '"', self::EOL);
     }
-
-    /**
-     * @deprecated
-     *
-     * @param array  $row
-     * @param string $delimiter
-     *
-     * @return string
-     */
-    public static function arrayToString(array $row, $delimiter)
-    {
-        return CsvRfcUtils::strPutCsv($row, $delimiter, '"', '');
-    }
 }

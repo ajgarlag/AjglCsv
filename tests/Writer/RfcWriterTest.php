@@ -54,11 +54,4 @@ class RfcWriterTest extends \PHPUnit_Framework_TestCase
         $actual = file_get_contents($this->object->getFilePath());
         $this->assertEquals($expected, $actual);
     }
-
-    public function testArrayToString()
-    {
-        $expected = '"Hello,World!",Hello;World!,"Hello\""World\""!","Hello\\\'World\\\'!","Hello'."\n".'World!"';
-        $row = array('Hello,World!', 'Hello;World!', 'Hello\"World\"!', "Hello\'World\'!", "Hello\nWorld!");
-        $this->assertEquals($expected, RfcWriter::arrayToString($row, ','));
-    }
 }
