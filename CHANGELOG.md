@@ -2,20 +2,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased][unreleased]
+## [Unreleased]
 
-## Added
+## [0.5.0] - 2020-12-18
+
+### Added
 - Require phpunit/phpunit for development
 - Require friendsofphp/php-cs-fixer for development and fix-cs
 - Migrate code to PHP 7.3 adding scalar param type hints and return types
 - Upgrade phpunit dependency and fix tests
 - Migrate from travis-ci to github actions
 
-## Changed
+### Changed
 - Require PHP >=7.3 or >=8.0
 - Require ajgl/csv:^0.4
 
-## Removed
+### Removed
 - Remove deprecated method Ajgl\Csv\Writer\RfcWriter::arrayToString
 
 ## [0.4.0] - 2016-02-25
@@ -46,7 +48,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2012-11-15
 
-[unreleased]: https://github.com/ajgarlag/AjglCsv/compare/0.4.0...master
+[Unreleased]: https://github.com/ajgarlag/AjglCsv/compare/0.5.0...master
+[0.5.0]: https://github.com/ajgarlag/AjglCsv/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/ajgarlag/AjglCsv/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/ajgarlag/AjglCsv/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/ajgarlag/AjglCsv/compare/0.1.0...0.2.0
