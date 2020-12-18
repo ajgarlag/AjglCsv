@@ -34,9 +34,7 @@ class WriterFactory implements WriterFactoryInterface
                 return new RfcWriter($filePath, $delimiter, $fileCharset, $mode);
                 break;
             default:
-                throw new \InvalidArgumentException(
-                    sprintf("Unsupported writer type '%s'", $type)
-                );
+                throw new \InvalidArgumentException(sprintf("Unsupported writer type '%s'", $type));
                 break;
         }
     }

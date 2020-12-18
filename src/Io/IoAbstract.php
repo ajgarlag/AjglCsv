@@ -52,7 +52,7 @@ abstract class IoAbstract implements IoInterface
     /**
      * @var array
      */
-    protected $validModes = array();
+    protected $validModes = [];
 
     /**
      * Class constructor.
@@ -112,8 +112,6 @@ abstract class IoAbstract implements IoInterface
     }
 
     /**
-     * @param \Ajgl\Csv\Charset\ConverterInterface $converter
-     *
      * @return \Ajgl\Csv\Io\IoAbstract
      */
     public function setConverter(ConverterInterface $converter)
@@ -128,7 +126,7 @@ abstract class IoAbstract implements IoInterface
      */
     public function close()
     {
-        if (is_resource($this->fileHandler)) {
+        if (\is_resource($this->fileHandler)) {
             $res = @fclose($this->fileHandler);
             if (false === $res) {
                 throw new \RuntimeException('Cannot close the given resource');
@@ -151,7 +149,7 @@ abstract class IoAbstract implements IoInterface
     protected function setMode($mode)
     {
         $mode = substr((string) $mode, 0, 2);
-        if (!in_array($mode, $this->validModes, true)) {
+        if (!\in_array($mode, $this->validModes, true)) {
             throw new \InvalidArgumentException("The given mode '$mode' is not valid for the requested operation");
         }
         $this->mode = $mode;
@@ -164,7 +162,7 @@ abstract class IoAbstract implements IoInterface
      */
     protected function getHandler()
     {
-        if (!is_resource($this->fileHandler)) {
+        if (!\is_resource($this->fileHandler)) {
             $this->fileHandler = $this->openHandler($this->filePath, $this->mode);
         }
 
@@ -190,7 +188,6 @@ abstract class IoAbstract implements IoInterface
     }
 
     /**
-     * @param array  $row
      * @param string $inputCharset
      * @param string $fileCharset
      *

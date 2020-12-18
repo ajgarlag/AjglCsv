@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Added
 - Require phpunit/phpunit for development
+- Require friendsofphp/php-cs-fixer for development and fix-cs
 
 ## Changed
 - Require PHP >=7.3 or >=8.0

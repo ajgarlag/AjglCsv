@@ -34,9 +34,7 @@ class ReaderFactory implements ReaderFactoryInterface
                 return new RfcReader($filePath, $delimiter, $fileCharset, $mode);
                 break;
             default:
-                throw new \InvalidArgumentException(
-                    sprintf("Unsupported reader type '%s'", $type)
-                );
+                throw new \InvalidArgumentException(sprintf("Unsupported reader type '%s'", $type));
                 break;
         }
     }

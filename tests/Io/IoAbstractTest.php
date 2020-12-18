@@ -26,18 +26,18 @@ class IoAbstractTest extends \PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    protected $params = array();
+    protected $params = [];
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->params = array(
+        $this->params = [
             'filePath' => tempnam(sys_get_temp_dir(), 'test_'),
             'mode' => 'w+',
             'delimiter' => ';',
             'fileCharset' => 'ASCII',
-        );
+        ];
         $this->object = new IoAbstractImplementation(
             $this->params['filePath'],
             $this->params['delimiter'],

@@ -23,12 +23,17 @@
         "ajgl/csv-rfc": "^0.4"
     },
     "require-dev": {
-         "phpunit/phpunit": "^4.8 || ^5.7"
+        "phpunit/phpunit": "^4.8 || ^5.7",
+        "friendsofphp/php-cs-fixer": "^2.17"
     },
     "suggest": {
         "ext-iconv": "Enabling the iconv extension allows you to convert the string using the IconvConverter class"
     },
     "scripts": {
+        "fix-cs": [
+            "@php-cs-fixer"
+        ],
+        "php-cs-fixer": "vendor/bin/php-cs-fixer fix --ansi",
         "phpunit": "vendor/bin/phpunit --colors=always",
         "test": [
             "@phpunit"

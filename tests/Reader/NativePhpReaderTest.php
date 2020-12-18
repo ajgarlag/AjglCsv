@@ -26,18 +26,18 @@ class NativePhpReaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    protected $params = array();
+    protected $params = [];
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->params = array(
+        $this->params = [
             'filePath' => __DIR__.'/_files/php_test.csv',
             'delimiter' => ',',
             'fileCharset' => 'ASCII',
             'mode' => 'r',
-        );
+        ];
         $this->object = new NativePhpReader(
             $this->params['filePath'],
             $this->params['delimiter'],
@@ -48,19 +48,19 @@ class NativePhpReaderTest extends \PHPUnit_Framework_TestCase
 
     public function testReadNextRow()
     {
-        $expected = array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo');
+        $expected = ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'];
         $actual = $this->object->readNextRow();
         $this->assertEquals($expected, $actual);
     }
 
     public function testReadNextRows()
     {
-        $expected = array(
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
-            array('fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber', '"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber', 'fuu'."\r\n".'"ber"', 'fuu,'."\r\n".'Ber', 'fuu'."\r\n".'Ber,ber', 'fuu'),
-            array(''),
-            array('foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'),
-        );
+        $expected = [
+            ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'],
+            ['fuu', 'ber', '', 'fuu "ber"', 'fuu ber', 'fuu, ber', '"fuu" ber', '\"fuu\" ber', '"fuu"'."\r\n".'Ber', 'fuu'."\r\n".'"ber"', 'fuu,'."\r\n".'Ber', 'fuu'."\r\n".'Ber,ber', 'fuu'],
+            [''],
+            ['foo', 'bar', '', 'foo "bar"', 'foo bar', 'foo, bar', '"foo" bar', '\"foo\" bar', '"foo"'."\r\n".'Bar', 'foo'."\r\n".'"bar"', 'foo,'."\r\n".'Bar', 'foo'."\r\n".'Bar,bar', 'foo'],
+        ];
         $actual = $this->object->readNextRows();
         $this->assertEquals($expected, $actual);
     }

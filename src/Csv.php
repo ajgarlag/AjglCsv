@@ -41,10 +41,6 @@ class Csv
      */
     protected $writerFactory;
 
-    /**
-     * @param \Ajgl\Csv\Reader\ReaderFactoryInterface $readerFactory
-     * @param \Ajgl\Csv\Writer\WriterFactoryInterface $writerFactory
-     */
     public function __construct(ReaderFactoryInterface $readerFactory, WriterFactoryInterface $writerFactory)
     {
         $this->setReaderFactory($readerFactory);
@@ -70,9 +66,6 @@ class Csv
         return $this->readerFactory;
     }
 
-    /**
-     * @param \Ajgl\Csv\Reader\ReaderFactoryInterface $readerFactory
-     */
     public function setReaderFactory(ReaderFactoryInterface $readerFactory)
     {
         $this->readerFactory = $readerFactory;
@@ -86,9 +79,6 @@ class Csv
         return $this->writerFactory;
     }
 
-    /**
-     * @param \Ajgl\Csv\Writer\WriterFactoryInterface $writerFactory
-     */
     public function setWriterFactory(WriterFactoryInterface $writerFactory)
     {
         $this->writerFactory = $writerFactory;

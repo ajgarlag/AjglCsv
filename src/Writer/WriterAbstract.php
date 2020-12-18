@@ -22,7 +22,7 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
     /**
      * @var array
      */
-    protected $validModes = array('r+', 'w', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+');
+    protected $validModes = ['r+', 'w', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+'];
 
     /**
      * Class constructor.
@@ -64,7 +64,6 @@ abstract class WriterAbstract extends IoAbstract implements WriterInterface
 
     /**
      * @param resource $fileHandler
-     * @param array    $row
      * @param string   $delimiter
      */
     abstract protected function doWrite($fileHandler, array $row, $delimiter);

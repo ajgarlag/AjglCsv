@@ -23,6 +23,6 @@ class NativePhpReader extends ReaderAbstract
     {
         $row = fgetcsv($this->getHandler(), 0, $this->getDelimiter());
 
-        return ($row !== false) ? $row : null;
+        return (false !== $row) ? $row : null;
     }
 }

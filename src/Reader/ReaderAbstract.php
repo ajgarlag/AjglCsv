@@ -22,7 +22,7 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
     /**
      * @var array
      */
-    protected $validModes = array('r', 'r+', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+');
+    protected $validModes = ['r', 'r+', 'w+', 'a', 'a+', 'x', 'x+', 'c', 'c+'];
 
     /**
      * Class constructor.
@@ -44,7 +44,7 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
     {
         $row = $this->doRead($this->getHandler(), $this->getDelimiter());
 
-        if ($row !== null && $outputCharset !== $this->getFileCharset()) {
+        if (null !== $row && $outputCharset !== $this->getFileCharset()) {
             $row = $this->convertRowCharset($row, $this->getFileCharset(), $outputCharset);
         }
 
@@ -56,16 +56,16 @@ abstract class ReaderAbstract extends IoAbstract implements ReaderInterface
      */
     public function readNextRows($inputCharset = IoInterface::CHARSET_DEFAULT, $limit = null)
     {
-        $res = array();
-        if ($limit === null) {
+        $res = [];
+        if (null === $limit) {
             while ($row = $this->readNextRow($inputCharset)) {
-                array_push($res, $row);
+                $res[] = $row;
             }
         } else {
             $limit = (int) $limit;
             for ($i = 0; $i < $limit; ++$i) {
                 if ($row = $this->readNextRow($inputCharset)) {
-                    array_push($res, $row);
+                    $res[] = $row;
                 } else {
                     break;
                 }

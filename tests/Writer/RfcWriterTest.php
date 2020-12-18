@@ -26,18 +26,18 @@ class RfcWriterTest extends \PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    protected $params = array();
+    protected $params = [];
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->params = array(
+        $this->params = [
             'filePath' => tempnam(sys_get_temp_dir(), 'test_'),
             'delimiter' => ';',
             'outputCharset' => 'ASCII',
             'mode' => 'w+',
-        );
+        ];
         $this->object = new RfcWriter(
             $this->params['filePath'],
             $this->params['delimiter'],
@@ -48,7 +48,7 @@ class RfcWriterTest extends \PHPUnit_Framework_TestCase
 
     public function testWrite()
     {
-        $this->object->writeRow(array('foo', 'bar', 'fú', 'foo"bar\"'));
+        $this->object->writeRow(['foo', 'bar', 'fú', 'foo"bar\"']);
         $this->object->close();
         $expected = 'foo;bar;f?;"foo""bar\"""'.RfcWriter::EOL;
         $actual = file_get_contents($this->object->getFilePath());

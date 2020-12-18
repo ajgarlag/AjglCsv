@@ -19,14 +19,12 @@ use Ajgl\Csv\Io\IoInterface;
 interface WriterInterface extends IoInterface
 {
     /**
-     * @param array $row
-     * @param type  $inputCharset
+     * @param type $inputCharset
      */
     public function writeRow(array $row, $inputCharset = IoInterface::CHARSET_DEFAULT);
 
     /**
-     * @param array $rows
-     * @param type  $inputCharset
+     * @param type $inputCharset
      */
     public function writeRows(array $rows, $inputCharset = IoInterface::CHARSET_DEFAULT);
 }

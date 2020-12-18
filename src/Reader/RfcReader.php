@@ -25,6 +25,6 @@ class RfcReader extends ReaderAbstract
     {
         $row = CsvRfcUtils::fGetCsv($this->getHandler(), 0, $this->getDelimiter());
 
-        return ($row !== false) ? $row : null;
+        return (false !== $row) ? $row : null;
     }
 }
