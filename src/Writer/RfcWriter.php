@@ -28,6 +28,6 @@ class RfcWriter extends WriterAbstract
      */
     protected function doWrite($fileHandler, array $row, $delimiter)
     {
-        CsvRfcUtils::fPutCsv($fileHandler, $row, $delimiter, '"', '"', self::EOL);
+        CsvRfcUtils::fPutCsv($fileHandler, $row, $delimiter, '"', '\\', self::EOL);
     }
 }

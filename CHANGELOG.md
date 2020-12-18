@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Changed
 - Require PHP >=7.3 or >=8.0
+- Require ajgl/csv:^0.4
 
 ## Removed
 - Remove deprecated method Ajgl\Csv\Writer\RfcWriter::arrayToString

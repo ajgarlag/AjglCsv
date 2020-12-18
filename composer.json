@@ -20,7 +20,7 @@
     },
     "require": {
         "php": "^7.3 || ^8.0",
-        "ajgl/csv-rfc": "^0.1.0"
+        "ajgl/csv-rfc": "^0.4"
     },
     "require-dev": {
          "phpunit/phpunit": "^4.8 || ^5.7"
