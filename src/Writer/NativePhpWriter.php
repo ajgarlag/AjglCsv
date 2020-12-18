@@ -22,7 +22,7 @@ class NativePhpWriter extends WriterAbstract
 {
     protected function doWrite($fileHandler, array $row, $delimiter): void
     {
-        $res = @fputcsv($fileHandler, $row, $delimiter);
+        $res = fputcsv($fileHandler, $row, $delimiter);
         if (false === $res) {
             throw new \RuntimeException('Cannot write to the given resource');
         }

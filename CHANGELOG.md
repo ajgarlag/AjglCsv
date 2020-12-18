@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.5.1] - 2020-12-18
+
+### Changed
+- Do not silence error in NativePhpWriter
+
 ## [0.5.0] - 2020-12-18
 
 ### Added
@@ -31,7 +36,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Migration to PSR-4
 - Leave gitflow workflow
 
-## Deprecated
+### Deprecated
 - Deprecate `Ajgl\Csv\Writer\RfcWriter::arrayToString`. It can be replaced by `Ajgl\Csv\Rfc\CsvRfcUtils::strPutCsv`
   from [ajgl/csv-rfc]
 
@@ -48,7 +53,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2012-11-15
 
-[Unreleased]: https://github.com/ajgarlag/AjglCsv/compare/0.5.0...master
+[Unreleased]: https://github.com/ajgarlag/AjglCsv/compare/0.5.1...master
+[0.5.1]: https://github.com/ajgarlag/AjglCsv/compare/0.5.0...0.5.1
 [0.5.0]: https://github.com/ajgarlag/AjglCsv/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/ajgarlag/AjglCsv/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/ajgarlag/AjglCsv/compare/0.2.0...0.3.0
